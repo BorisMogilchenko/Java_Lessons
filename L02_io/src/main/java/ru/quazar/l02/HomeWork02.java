@@ -1,22 +1,24 @@
 package ru.quazar.l02;
 
+import lombok.Data;
+
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
+@Data
 public class HomeWork02 {
 
-    private static String findString = "Hello, guys!";
-    private static String inFileName = "homework_02_input.txt";
-    private static String outFileName = "homework_02_output.txt";
-    private static String targetPath = "";
-    private static String inFullName = "";
-    private static String outFullName = "";
-    private static String cOutSubString1 = "";
-    private static String cOutSubString2 = "";
+    private static final String findString = "Hello, guys!";
+    private static final String inFileName = "homework_02_input.txt";
+    private static final String outFileName = "homework_02_output.txt";
 
     public static void main(String[] args) throws IllegalArgumentException {
+        private static String targetPath = "";
+        private static String inFullName = "";
+        private static String outFullName = "";
+
         if (args.length == 0) {
             System.out.println("Отсутствуют входящие параметры!!!");
             System.exit(0);
@@ -48,6 +50,8 @@ public class HomeWork02 {
 
     private static void file2Stream(String source, String target) throws IOException {
 
+        private static String cOutSubString1 = "";
+        private static String cOutSubString2 = "";
         int c;
 
         try (FileInputStream inFile = new FileInputStream(source);

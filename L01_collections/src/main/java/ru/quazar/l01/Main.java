@@ -1,16 +1,20 @@
 package ru.quazar.l01;
 
+import lombok.Data;
+
 import java.util.Random;
 
+@Data
 public class Main {
 
-    final static int minRange = 0;
-    final static int maxRange = 999;
-    static int rndNumber;
+    private static final int minRange = 0;
+    private static final int maxRange = 999;
+    private static final cycleCounter = 100;
+    private static int rndNumber;
 
     public static void main(String[] args) {
         CustomList list = new CustomList();
-        for (int i = minRange; i < 100; i++) {
+        for (int i = minRange; i < cycleCounter; i++) {
             Random rnd = new Random();
             rndNumber = minRange + rnd.nextInt(maxRange - minRange + 1);
             list.add(rndNumber);

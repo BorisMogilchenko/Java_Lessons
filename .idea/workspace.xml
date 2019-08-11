@@ -2,20 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a4bb2c58-0607-4edb-8bb4-e68d868beae5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/L01_collections/src/test/java/ru/quazar/l01/MyListTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/L02_io/src/test/java/ru/quazar/l02/MyIOTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/L03_multithread/src/main/java/ru/quazar/l03/Book.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/L03_multithread/src/main/java/ru/quazar/l03/Catalog.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/L03_multithread/src/test/java/ru/quazar/l03/BookTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/L01_collectios/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/L01_collectios/src/main/java/ru/quazar/l01/CustomList.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/L01_collectios/src/main/java/ru/quazar/l01/FindMinMax.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/L01_collectios/src/main/java/ru/quazar/l01/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/L01_collections/src/main/java/ru/quazar/l01/MaximumClass.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/L01_collections/src/main/java/ru/quazar/l01/MinimumClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/L01_collections/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/L01_collections/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/L01_collections/src/main/java/ru/quazar/l01/CustomList.java" beforeDir="false" afterPath="$PROJECT_DIR$/L01_collections/src/main/java/ru/quazar/l01/CustomList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/L01_collections/src/main/java/ru/quazar/l01/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/L01_collections/src/main/java/ru/quazar/l01/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/L02_io/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/L02_io/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/L02_io/src/main/java/ru/quazar/l02/HomeWork02.java" beforeDir="false" afterPath="$PROJECT_DIR$/L02_io/src/main/java/ru/quazar/l02/HomeWork02.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -34,8 +28,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="24" selection-start-line="24" selection-end-line="24" />
+            <state relative-caret-position="34">
+              <caret line="23" selection-start-line="23" selection-end-line="23" />
             </state>
           </provider>
         </entry>
@@ -52,8 +46,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/L02_io/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1462">
-              <caret line="86" selection-start-line="86" selection-end-line="86" />
+            <state relative-caret-position="-3">
+              <caret line="32" column="17" lean-forward="true" selection-start-line="32" selection-start-column="17" selection-end-line="32" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -61,23 +55,19 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/L01_collections/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1462">
-              <caret line="86" selection-start-line="84" selection-end-line="86" />
+            <state relative-caret-position="575">
+              <caret line="57" selection-start-line="51" selection-end-line="57" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/L03_multithread/src/main/java/ru/quazar/l03/Library.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="478">
+            <state relative-caret-position="1173">
               <caret line="86" column="27" selection-start-line="86" selection-start-column="27" selection-end-line="86" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1666#1667#0" expanded="true" />
-                <element signature="e#1687#1688#0" expanded="true" />
-                <element signature="e#1764#1765#0" expanded="true" />
-                <element signature="e#1811#1812#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -86,16 +76,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/L01_collections/src/test/java/ru/quazar/l01/MyListTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
+            <state relative-caret-position="68">
               <caret line="4" selection-start-line="4" selection-end-line="4" selection-end-column="32" />
-              <folding>
-                <element signature="e#116#117#0" expanded="true" />
-                <element signature="e#137#138#0" expanded="true" />
-                <element signature="e#277#278#0" expanded="true" />
-                <element signature="e#333#334#0" expanded="true" />
-                <element signature="e#379#380#0" expanded="true" />
-                <element signature="e#437#438#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -103,14 +85,12 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/L02_io/src/test/java/ru/quazar/l02/MyIOTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" lean-forward="true" selection-start-line="7" selection-end-line="10" />
+            <state relative-caret-position="102">
+              <caret line="10" selection-start-line="7" selection-end-line="10" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#121#122#0" expanded="true" />
-                <element signature="e#159#160#0" expanded="true" />
                 <element signature="e#291#292#0" expanded="true" />
-                <element signature="e#378#379#0" expanded="true" />
+                <element signature="e#379#380#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -121,16 +101,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="102">
               <caret line="6" selection-start-line="6" selection-end-line="6" />
-              <folding>
-                <element signature="e#632#633#0" expanded="true" />
-                <element signature="e#660#661#0" expanded="true" />
-                <element signature="e#702#703#0" expanded="true" />
-                <element signature="e#736#737#0" expanded="true" />
-                <element signature="e#768#769#0" expanded="true" />
-                <element signature="e#797#798#0" expanded="true" />
-                <element signature="e#838#839#0" expanded="true" />
-                <element signature="e#867#868#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -138,7 +108,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/L03_multithread/src/main/java/ru/quazar/l03/Catalog.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
+            <state relative-caret-position="289">
               <caret line="23" column="11" selection-start-line="23" selection-start-column="11" selection-end-line="23" selection-end-column="11" />
               <folding>
                 <element signature="e#95#96#0" expanded="true" />
@@ -153,8 +123,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/L03_multithread/src/test/java/ru/quazar/l03/BookTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+            <state relative-caret-position="187">
+              <caret line="12" selection-start-line="12" selection-end-line="12" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -162,11 +132,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/L02_io/src/main/java/ru/quazar/l02/HomeWork02.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-777">
-              <caret line="10" selection-start-line="10" selection-end-line="10" />
+            <state relative-caret-position="31">
+              <caret line="9" column="5" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -195,17 +165,22 @@
         <option value="$PROJECT_DIR$/L03_multithread/src/main/java/ru/quazar/l03/BookCatalog.java" />
         <option value="$PROJECT_DIR$/L03_multithread/src/main/java/ru/quazar/l03/BooksLoad.java" />
         <option value="$PROJECT_DIR$/L03_multithread/src/main/java/ru/quazar/l03/BooksReader.java" />
-        <option value="$PROJECT_DIR$/L01_collections/pom.xml" />
         <option value="$PROJECT_DIR$/L03_multithread/pom.xml" />
-        <option value="$PROJECT_DIR$/L02_io/pom.xml" />
         <option value="$PROJECT_DIR$/L03_multithread/src/main/java/ru/quazar/l03/LibraryClientThread.java" />
         <option value="$PROJECT_DIR$/L03_multithread/src/main/java/ru/quazar/l03/Book.java" />
         <option value="$PROJECT_DIR$/L03_multithread/src/main/java/ru/quazar/l03/Catalog.java" />
         <option value="$PROJECT_DIR$/L01_collections/src/test/java/MyListTest.java" />
         <option value="$PROJECT_DIR$/L02_io/src/test/java/MyIOTest.java" />
-        <option value="$PROJECT_DIR$/L02_io/src/main/java/ru/quazar/l02/HomeWork02.java" />
         <option value="$PROJECT_DIR$/L03_multithread/src/test/java/ru/quazar/l03/BookTest.java" />
         <option value="$PROJECT_DIR$/L03_multithread/src/main/java/ru/quazar/l03/Library.java" />
+        <option value="$PROJECT_DIR$/L01_collections/pom.xml" />
+        <option value="$PROJECT_DIR$/L01_collections/src/main/java/ru/quazar/l01/MinimumClass.java/CustomList.java" />
+        <option value="$PROJECT_DIR$/L01_collections/src/main/java/ru/quazar/l01/MaximumClass.java" />
+        <option value="$PROJECT_DIR$/L01_collections/src/main/java/ru/quazar/l01/MinimumClass.java" />
+        <option value="$PROJECT_DIR$/L01_collections/src/main/java/ru/quazar/l01/CustomList.java" />
+        <option value="$PROJECT_DIR$/L02_io/pom.xml" />
+        <option value="$PROJECT_DIR$/L01_collections/src/main/java/ru/quazar/l01/Main.java" />
+        <option value="$PROJECT_DIR$/L02_io/src/main/java/ru/quazar/l02/HomeWork02.java" />
       </list>
     </option>
   </component>
@@ -220,6 +195,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -252,6 +228,15 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Java_Lessons" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Java_Lessons" type="462c0819:PsiDirectoryNode" />
+              <item name="L01_collections" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="l01" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Java_Lessons" type="b2602c69:ProjectViewProjectNode" />
@@ -357,7 +342,6 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -367,10 +351,11 @@
     <property name="GenerateAntBuildDialog.outputFileNameProperty" value="java_lessons" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1565448386570" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1565554236809" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="Arquillian JUnit4" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.Arquillian JUnit4" value="" />
     <property name="extract.method.default.visibility" value="private" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/L01_collections/src/main/java/ru/quazar/l01" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -387,10 +372,15 @@
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="ru.quazar.l01" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Projects\GitHub\Java_Lessons\L01_collections\src\main\java\ru\quazar\l01" />
+    </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Projects\GitHub\Java_Lessons\L01_collections\src\main\java\ru\quazar\l01" />
+      <recent name="D:\Projects\GitHub\Java_Lessons\L01_collections\src\main\java\ru\quazar\l01\MinimumClass.java" />
       <recent name="D:\Projects\GitHub\Java_Lessons\L02_io\src\test\java\ru\quazar\l02;" />
     </key>
   </component>
@@ -513,17 +503,19 @@
       <workItem from="1565292078807" duration="3809000" />
       <workItem from="1565372023218" duration="10239000" />
       <workItem from="1565423667380" duration="21710000" />
+      <workItem from="1565459546667" duration="625000" />
+      <workItem from="1565550521802" duration="3706000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="110594000" />
+    <option name="totallyTimeSpent" value="114925000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="1000" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.28883496" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2985437" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -570,10 +562,11 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/L03_multithread/src/main/java/ru/quazar/l03/LibraryClientThread.java" />
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" selection-start-line="24" selection-end-line="24" />
+        <state relative-caret-position="34">
+          <caret line="23" selection-start-line="23" selection-end-line="23" />
         </state>
       </provider>
     </entry>
@@ -584,24 +577,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/L02_io/pom.xml">
+    <entry file="file://$PROJECT_DIR$/L03_multithread/src/main/java/ru/quazar/l03/Library.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1462">
-          <caret line="86" selection-start-line="86" selection-end-line="86" />
+        <state relative-caret-position="1173">
+          <caret line="86" column="27" selection-start-line="86" selection-start-column="27" selection-end-line="86" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/L01_collections/pom.xml">
+    <entry file="file://$PROJECT_DIR$/L01_collections/src/test/java/ru/quazar/l01/MyListTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1462">
-          <caret line="86" selection-start-line="84" selection-end-line="86" />
+        <state relative-caret-position="68">
+          <caret line="4" selection-start-line="4" selection-end-line="4" selection-end-column="32" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/L03_multithread/src/main/java/ru/quazar/l03/LibraryClientThread.java">
+    <entry file="file://$PROJECT_DIR$/L02_io/src/test/java/ru/quazar/l02/MyIOTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="5" lean-forward="true" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
+        <state relative-caret-position="102">
+          <caret line="10" selection-start-line="7" selection-end-line="10" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#291#292#0" expanded="true" />
+            <element signature="e#379#380#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -609,68 +610,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" selection-start-line="6" selection-end-line="6" />
-          <folding>
-            <element signature="e#632#633#0" expanded="true" />
-            <element signature="e#660#661#0" expanded="true" />
-            <element signature="e#702#703#0" expanded="true" />
-            <element signature="e#736#737#0" expanded="true" />
-            <element signature="e#768#769#0" expanded="true" />
-            <element signature="e#797#798#0" expanded="true" />
-            <element signature="e#838#839#0" expanded="true" />
-            <element signature="e#867#868#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/L01_collections/src/test/java/ru/quazar/l01/MyListTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="4" selection-start-line="4" selection-end-line="4" selection-end-column="32" />
-          <folding>
-            <element signature="e#116#117#0" expanded="true" />
-            <element signature="e#137#138#0" expanded="true" />
-            <element signature="e#277#278#0" expanded="true" />
-            <element signature="e#333#334#0" expanded="true" />
-            <element signature="e#379#380#0" expanded="true" />
-            <element signature="e#437#438#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/L02_io/src/main/java/ru/quazar/l02/HomeWork02.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-777">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/L02_io/src/test/java/ru/quazar/l02/MyIOTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" lean-forward="true" selection-start-line="7" selection-end-line="10" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#121#122#0" expanded="true" />
-            <element signature="e#159#160#0" expanded="true" />
-            <element signature="e#291#292#0" expanded="true" />
-            <element signature="e#378#379#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/L03_multithread/src/test/java/ru/quazar/l03/BookTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/L03_multithread/src/main/java/ru/quazar/l03/Catalog.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
+        <state relative-caret-position="289">
           <caret line="23" column="11" selection-start-line="23" selection-start-column="11" selection-end-line="23" selection-end-column="11" />
           <folding>
             <element signature="e#95#96#0" expanded="true" />
@@ -681,17 +626,65 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/L03_multithread/src/main/java/ru/quazar/l03/Library.java">
+    <entry file="file://$PROJECT_DIR$/L03_multithread/src/test/java/ru/quazar/l03/BookTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="478">
-          <caret line="86" column="27" selection-start-line="86" selection-start-column="27" selection-end-line="86" selection-end-column="27" />
+        <state relative-caret-position="187">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1666#1667#0" expanded="true" />
-            <element signature="e#1687#1688#0" expanded="true" />
-            <element signature="e#1764#1765#0" expanded="true" />
-            <element signature="e#1811#1812#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/L01_collections/src/main/java/ru/quazar/l01/MinimumClass.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="11" column="6" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/L01_collections/src/main/java/ru/quazar/l01/MaximumClass.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/L01_collections/src/main/java/ru/quazar/l01/CustomList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/L01_collections/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="575">
+          <caret line="57" selection-start-line="51" selection-end-line="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/L01_collections/src/main/java/ru/quazar/l01/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/L02_io/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3">
+          <caret line="32" column="17" lean-forward="true" selection-start-line="32" selection-start-column="17" selection-end-line="32" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/L02_io/src/main/java/ru/quazar/l02/HomeWork02.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="31">
+          <caret line="9" column="5" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
         </state>
       </provider>
     </entry>
