@@ -2,85 +2,69 @@ package ru.quazar.l02;
 
 import lombok.Data;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
+import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.net.URL;
+
+import static ru.quazar.l02.File2Stream.loadFile2Stream;
 
 @Data
 public class HomeWork02 {
 
-    private static final String findString = "Hello, guys!";
     private static final String inFileName = "homework_02_input.txt";
     private static final String outFileName = "homework_02_output.txt";
 
-    public static void main(String[] args) throws IllegalArgumentException {
-        private static String targetPath = "";
-        private static String inFullName = "";
-        private static String outFullName = "";
+    public static void main(String[] args){
+        String targetPath = "";
+        String inFullName;
+        String outFullName;
+        int readingTarget = 0;
+
+        HomeWork02 main = new HomeWork02();
 
         if (args.length == 0) {
             System.out.println("Отсутствуют входящие параметры!!!");
-            System.exit(0);
+            return;
         }
 
-        int readingTarget = Integer.parseInt(args[0]);
-
-
-        if (readingTarget < 1 || readingTarget > 2) {
-            System.out.println("Неправильное значение аргумента!!!");
-            System.exit(0);
-        } else {
-            if ((args.length == 2) && !(args[1].length() == 0)) {
-                targetPath = args[1];
-            } else {
-                targetPath = "L02_io\\src\\main\\resources\\";
-            }
+        try {
+            if (CheckArgString.isNumber(args[0]) )
+                readingTarget = Integer.parseInt(args[0]);
+        } catch (IllegalArgumentException ex) {
+            throw new IllegalArgumentException("Неправильное значение аргумента!!!");
         }
 
+        switch (readingTarget) {
+            case 1: targetPath = args[1];
+                break;
+            case 2: targetPath = "";
+                break;
+            default: System.out.println("Неправильное значение аргумента!!!");
+                return;
+        }
+
+        File file = main.getFileFromResources("homework_02_input.txt");
         inFullName = targetPath + inFileName;
         outFullName = targetPath + outFileName;
 
         try {
-            file2Stream(inFullName,outFullName);
+            Stream2File.uploadStream2File(loadFile2Stream(inFullName),outFullName);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private static void file2Stream(String source, String target) throws IOException {
+    private File getFileFromResources(String fileName) {
 
-        private static String cOutSubString1 = "";
-        private static String cOutSubString2 = "";
-        int c;
+        ClassLoader classLoader = getClass().getClassLoader();
 
-        try (FileInputStream inFile = new FileInputStream(source);
-             FileOutputStream outFile = new FileOutputStream(target)
-
-        ) {
-            StringBuilder inChar2String = new StringBuilder();
-            String sInputFile;
-            int iBeginFindString;
-            int iLenSubString = 20;
-                while ((c = inFile.read()) != -1) {
-                    inChar2String.append(Character.toChars(c));
-                }
-            sInputFile = inChar2String.toString();
-            if (sInputFile.contains(findString)) {
-                if ((iBeginFindString = sInputFile.indexOf(findString)) != -1) {
-                    cOutSubString1 = sInputFile.substring(iBeginFindString - iLenSubString, iBeginFindString);
-                    cOutSubString2 = sInputFile.substring(iBeginFindString + findString.length(), iBeginFindString + (findString.length()) + (iLenSubString));
-                }
-
-                ArrayList<String> myString2File = new ArrayList<>();
-                myString2File.add(cOutSubString1);
-                myString2File.add(cOutSubString2);
-
-                for (String s2f : myString2File) {
-                    byte[] buffer = s2f.getBytes();
-                    outFile.write(buffer);
-                }
-            }
+        URL resource = classLoader.getResource(fileName);
+        if (resource == null) {
+            throw new IllegalArgumentException("file is not found!");
+        } else {
+            return new File(resource.getFile());
         }
+
     }
+
 }

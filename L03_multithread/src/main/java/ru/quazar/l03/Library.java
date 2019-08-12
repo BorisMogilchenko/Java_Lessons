@@ -1,7 +1,5 @@
 package ru.quazar.l03;
 
-import org.checkerframework.checker.units.qual.A;
-
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -84,7 +82,7 @@ class LibraryClientThread extends Thread {
                 Random rnd = new Random();
                 rndNumber = minRange + rnd.nextInt(maxRange - minRange + 1);
                 if (!booksCatalog.get(i).getBusy()) {
-                    Catalog.outputCatalog(1);
+//                    Catalog.outputCatalog(1);
                     try {
                         sleep(rndNumber);
                     } catch (InterruptedException e) {

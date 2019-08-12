@@ -9,7 +9,7 @@ public class Main {
 
     private static final int minRange = 0;
     private static final int maxRange = 999;
-    private static final cycleCounter = 100;
+    private static final int cycleCounter = 100;
     private static int rndNumber;
 
     public static void main(String[] args) {
