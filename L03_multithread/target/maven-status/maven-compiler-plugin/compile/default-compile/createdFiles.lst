@@ -1,7 +1,5 @@
-ru\quazar\l03\LibraryClientThread.class
-ru\quazar\l03\Catalog.class
-ru\quazar\l03\LibraryClientThread$1.class
-ru\quazar\l03\LibraryClientThread$BookOutputThread.class
-ru\quazar\l03\LibraryClientThread$BookInputThread.class
 ru\quazar\l03\Library.class
+ru\quazar\l03\LibraryClientThread.class
 ru\quazar\l03\Book.class
+ru\quazar\l03\Catalog.class
+ru\quazar\l03\LibraryClientThread$BookOutputThread.class

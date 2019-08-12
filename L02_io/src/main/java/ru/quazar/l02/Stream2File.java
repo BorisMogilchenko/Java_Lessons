@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 @Data
 class Stream2File {
-    static void uploadStream2File(ArrayList<String> myList, String target) {
+    static void uploadStream2File (ArrayList<String> myList, String target) {
 
         try(FileOutputStream outFile = new FileOutputStream(target)
 
