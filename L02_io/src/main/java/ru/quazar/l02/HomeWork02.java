@@ -11,58 +11,64 @@ import static ru.quazar.l02.File2Stream.loadFile2Stream;
 @Data
 public class HomeWork02 {
 
-    private static final String inFileName = "homework_02_input.txt";
-    private static final String outFileName = "homework_02_output.txt";
+    static final String inFileName = "homework_02_input.txt";
+    static final String outFileName = "homework_02_output.txt";
 
     public static void main(String[] args) throws Exception {
         String targetPath = "";
-        String inFullName;
-        String outFullName;
+        String inFullName = "";
+        String outFullName = "";
         int readingTarget = 0;
 
         HomeWork02 main = new HomeWork02();
-        File fileInput = main.getFileFromResources("homework_02_input.txt");
 
-        if (args.length == 0) {
-            System.out.println("Отсутствуют входящие параметры!!!");
-            return;
-        }
-
-        try {
-            if (CheckArgString.isNumber(args[0]) )
-                readingTarget = Integer.parseInt(args[0]);
-        } catch (IllegalArgumentException ex) {
-            throw new IllegalArgumentException("Неправильное значение аргумента!!!");
-        }
-
-        switch (readingTarget) {
+        switch (args.length) {
+            case 0:
+                System.out.println("Отсутствуют входящие параметры!!!");
+                return;
             case 1:
-                if (args.length == 2) {
-                    targetPath = args[1];
-                    break;
-                } else {
-                    System.out.println("Неправильное значение аргумента (Тип 1 - 1, Тип 2 - пусто)!!!");
-                    return;
+                try {
+                    if (CheckArgString.isNumber(args[0]) )
+                        readingTarget = Integer.parseInt(args[0]);
+                } catch (IllegalArgumentException ex) {
+                    throw new IllegalArgumentException("Неправильное значение аргумента!!!");
                 }
             case 2:
-                if (args.length == 2) {
-                    if (targetPath.equals(args[1])) {
-                        targetPath = fileInput.getPath();
+                switch (readingTarget) {
+                    case 1:
+                        if (args.length == 2) {
+                            targetPath = args[1];
+                            inFullName = targetPath + inFileName;
+                            outFullName = targetPath + outFileName;
+                            break;
+                        } else {
+                            System.out.println("Неправильное значение аргумента (Тип 1 - 1, Тип 2 - пусто)!!!");
+                            return;
+                        }
+                    case 2:
+                        if (args.length == 2) {
+                            if (targetPath.equals(args[1])) {
+                                inFullName = targetPath + inFileName;
+                                outFullName = targetPath + outFileName;
+                                break;
+                            } else {
+                                System.out.println("Неправильное значение аргумента (Тип 1 - 2, Тип 2 - вне ресурсов)!!!");
+                                return;
+                            }
+                        } if (args.length == 1) {
+                        File fileInput = main.getFileFromResources(inFileName);
+                        targetPath = fileInput.getParent();
+                        inFullName = targetPath + inFileName;
+                        outFullName = targetPath + outFileName;
                         break;
-                    } else {
-                        System.out.println("Неправильное значение аргумента (Тип 1 - 2, Тип 2 - вне ресурсов)!!!");
-                        return;
                     }
-                } if (args.length == 1) {
-                    targetPath = fileInput.getPath();
-                    break;
+                    default: System.out.println("Неправильное значение аргумента (Тип 1 не равен 1 или 2)!!!");
+                        return;
                 }
-            default: System.out.println("Неправильное значение аргумента (Тип 1 не равен 1 или 2)!!!");
+            default:
+                System.out.println("Неправильное значение количества аргументов!!!");
                 return;
         }
-
-        inFullName = targetPath + inFileName;
-        outFullName = targetPath + outFileName;
 
         System.out.println("Имя входящего файла: " + inFullName);
         System.out.println();
