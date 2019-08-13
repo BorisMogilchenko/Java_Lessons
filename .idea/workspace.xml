@@ -4,6 +4,7 @@
     <list default="true" id="a4bb2c58-0607-4edb-8bb4-e68d868beae5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/L02_io/src/main/java/ru/quazar/l02/HomeWork02.java" beforeDir="false" afterPath="$PROJECT_DIR$/L02_io/src/main/java/ru/quazar/l02/HomeWork02.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/L02_io/src/main/resources/homework_02_output.txt" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -118,8 +119,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/L02_io/src/main/java/ru/quazar/l02/HomeWork02.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="166">
-              <caret line="72" column="8" selection-start-line="72" selection-start-column="8" selection-end-line="72" selection-end-column="8" />
+            <state relative-caret-position="272">
+              <caret line="58" column="34" lean-forward="true" selection-start-line="58" selection-start-column="34" selection-end-line="58" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -127,7 +128,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/L02_io/src/main/java/ru/quazar/l02/File2Stream.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
+            <state relative-caret-position="502">
               <caret line="36" column="9" selection-start-line="36" selection-start-column="9" selection-end-line="36" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -139,7 +140,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/L02_io/src/main/java/ru/quazar/l02/Stream2File.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
+            <state relative-caret-position="221">
               <caret line="17" column="34" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -391,7 +392,7 @@
     <property name="GenerateAntBuildDialog.outputFileNameProperty" value="java_lessons" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1565704750184" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1565728356497" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="Arquillian JUnit4" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.Arquillian JUnit4" value="" />
     <property name="extract.method.default.visibility" value="private" />
@@ -550,15 +551,15 @@
       <workItem from="1565596954586" duration="18068000" />
       <workItem from="1565630643780" duration="11188000" />
       <workItem from="1565674637715" duration="6510000" />
+      <workItem from="1565712447386" duration="8510000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="150691000" />
+    <option name="totallyTimeSpent" value="159201000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="1000" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.30339807" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -577,9 +578,9 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.3005917" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.29953918" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Messages" order="12" visible="true" weight="0.32544377" />
+      <window_info anchor="bottom" id="Messages" order="12" weight="0.24884793" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -746,10 +747,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/L02_io/src/main/java/ru/quazar/l02/File2Stream.java">
+    <entry file="file://$PROJECT_DIR$/L02_io/src/main/java/ru/quazar/l02/Stream2File.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="36" column="9" selection-start-line="36" selection-start-column="9" selection-end-line="36" selection-end-column="9" />
+        <state relative-caret-position="221">
+          <caret line="17" column="34" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -763,10 +764,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/L02_io/src/main/java/ru/quazar/l02/Stream2File.java">
+    <entry file="file://$PROJECT_DIR$/L02_io/src/main/java/ru/quazar/l02/File2Stream.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="34" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="34" />
+        <state relative-caret-position="502">
+          <caret line="36" column="9" selection-start-line="36" selection-start-column="9" selection-end-line="36" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -775,8 +776,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/L02_io/src/main/java/ru/quazar/l02/HomeWork02.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="72" column="8" selection-start-line="72" selection-start-column="8" selection-end-line="72" selection-end-column="8" />
+        <state relative-caret-position="272">
+          <caret line="58" column="34" lean-forward="true" selection-start-line="58" selection-start-column="34" selection-end-line="58" selection-end-column="34" />
         </state>
       </provider>
     </entry>

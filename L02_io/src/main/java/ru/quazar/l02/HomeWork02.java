@@ -21,6 +21,8 @@ public class HomeWork02 {
         int readingTarget = 0;
 
         HomeWork02 main = new HomeWork02();
+        File fileInput = main.getFileFromResources(inFileName);
+        targetPath = fileInput.getParent();
 
         switch (args.length) {
             case 0:
@@ -33,6 +35,7 @@ public class HomeWork02 {
                 } catch (IllegalArgumentException ex) {
                     throw new IllegalArgumentException("Неправильное значение аргумента!!!");
                 }
+                break;
             case 2:
                 switch (readingTarget) {
                     case 1:
@@ -46,8 +49,32 @@ public class HomeWork02 {
                             return;
                         }
                     case 2:
-                        if (args.length == 2) {
-                            if (targetPath.equals(args[1])) {
+                        switch (args.length) {
+                            case 1:
+                                inFullName = targetPath + inFileName;
+                                outFullName = targetPath + outFileName;
+                                break;
+                            case 2:
+                                if (fileInput.exists()) {
+                                    targetPath = args[1];
+                                    inFullName = targetPath + inFileName;
+                                    outFullName = targetPath + outFileName;
+                                    break;
+                                } else {
+                                    System.out.println("Неправильное значение аргумента (Тип 1 - 2, Тип 2 - вне ресурсов)!!!");
+                                    return;
+                                }
+                            default:
+                                    System.out.println("Неправильное значение количества аргументов!!!");
+                                    return;
+                        }
+
+/*                        if (args.length == 2) {
+                            File fileInput = main.getFileFromResources(inFileName);
+                            System.out.println("Путь входящего файла: " + fileInput);
+
+                            if (fileInput.exists()) {
+                                targetPath = args[1];
                                 inFullName = targetPath + inFileName;
                                 outFullName = targetPath + outFileName;
                                 break;
@@ -61,7 +88,7 @@ public class HomeWork02 {
                         inFullName = targetPath + inFileName;
                         outFullName = targetPath + outFileName;
                         break;
-                    }
+                    }*/
                     default: System.out.println("Неправильное значение аргумента (Тип 1 не равен 1 или 2)!!!");
                         return;
                 }
