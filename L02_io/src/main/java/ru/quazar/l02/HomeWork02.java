@@ -24,7 +24,7 @@ public class HomeWork02 {
 
         File inputFile = fileGetter.getFileWithConditions(args[0], args[1]);
 
-        HomeWork02 main = new HomeWork02();
+/*        HomeWork02 main = new HomeWork02();
         File fileInput = main.getFileFromResources(inFileName);
         targetPath = fileInput.getParent();
 
@@ -79,7 +79,7 @@ public class HomeWork02 {
             default:
                 System.out.println("Неправильное значение количества аргументов!!!");
                 return;
-        }
+        }*/
 
 /*                        if (args.length == 2) {
                             File fileInput = main.getFileFromResources(inFileName);
@@ -107,10 +107,10 @@ public class HomeWork02 {
         System.out.println("Имя выходящего файла: " + outFullName);
         System.out.println();
 
-        Stream2File.uploadStream2File(loadFile2Stream(inFullName),outFullName);
+        StreamToFile.uploadStreamToFile(loadFileToStream(inFullName),outFullName);
     }
 
-    private File getFileFromResources(String fileName) throws IOException {
+/*    private File getFileFromResources(String fileName) throws IOException {
 
         ClassLoader classLoader = getClass().getClassLoader();
 
@@ -121,9 +121,9 @@ public class HomeWork02 {
             return new File(resource.getFile());
         }
 
-    }
+    }*/
 
-    private static boolean isNumber(String s) {
+/*    private static boolean isNumber(String s) {
         try {
             int result = Integer.parseInt(s);
         } catch (NumberFormatException e) {
@@ -131,6 +131,6 @@ public class HomeWork02 {
             //return false;
         }
         return true;
-    }
+    }*/
 
 }
