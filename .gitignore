@@ -1,6 +1,14 @@
-.git
 .idea
 
+/L01_collections/.idea
+/L01_collections/target
+
+
+/L02_io/.idea
+/L02_io/target
+
+/L03_multithread/.idea
+/L03_multithread/target
 
 # Compiled class file
 *.class
