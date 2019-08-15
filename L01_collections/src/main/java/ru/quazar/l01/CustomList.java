@@ -20,10 +20,4 @@ class CustomList<T extends Number> {
         list.remove(t);
     }
 
-    @Override
-    public String toString() {
-        return "CustomList{" +
-                "list=" + list +
-                '}';
-    }
 }

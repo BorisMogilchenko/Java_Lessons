@@ -20,6 +20,10 @@ public class HomeWork02 {
         String outFullName = "";
         int readingTarget = 0;
 
+        FileGetter fileGetter = new FileGetter();
+
+        File inputFile = fileGetter.getFileWithConditions(args[0], args[1]);
+
         HomeWork02 main = new HomeWork02();
         File fileInput = main.getFileFromResources(inFileName);
         targetPath = fileInput.getParent();
@@ -30,7 +34,7 @@ public class HomeWork02 {
                 return;
             case 1:
                 try {
-                    if (CheckArgString.isNumber(args[0]) )
+                    if (isNumber(args[0]) )
                         readingTarget = Integer.parseInt(args[0]);
                 } catch (IllegalArgumentException ex) {
                     throw new IllegalArgumentException("Неправильное значение аргумента!!!");
@@ -117,6 +121,16 @@ public class HomeWork02 {
             return new File(resource.getFile());
         }
 
+    }
+
+    private static boolean isNumber(String s) {
+        try {
+            int result = Integer.parseInt(s);
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException("Incorrect type: " + e);
+            //return false;
+        }
+        return true;
     }
 
 }

@@ -27,7 +27,6 @@
         <maven-shade-plugin.version>3.2.1</maven-shade-plugin.version>
         <com.google.guava.version>27.1-jre</com.google.guava.version>
         <plugin.jar.version>3.1.2</plugin.jar.version>
-        <plugin.dependency.version>3.1.1</plugin.dependency.version>
         <plugin.compiler.version>3.1</plugin.compiler.version>
         <exec.mainClass>ru.quazar.l03.Library</exec.mainClass>
     </properties>
