@@ -4,6 +4,15 @@ import lombok.Data;
 
 import java.util.Random;
 
+/**
+ * Make generic class with parameter T. source file by path, find substring "Hello, guys!".
+ * Write to the file "homework_02_output.txt" twenty symbols behind and
+ * twenty symbols after finding substring.
+ *
+ * @version $Id: FileToStream.java,v 1.0 2019-08-15 23:30:42 Exp $
+ * @author  <A HREF="mailto:boris.mogilchenko@yandex.ru">Boris Mogilchenko</A>
+ */
+
 @Data
 public class Main {
 

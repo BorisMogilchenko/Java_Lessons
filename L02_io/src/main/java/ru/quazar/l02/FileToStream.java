@@ -16,6 +16,16 @@ import java.io.IOException;
 class FileToStream {
     private static final String findString = "Hello, guys!";
 
+    /**
+     * Get file from source path.
+     *
+     * @param inputFile Object File with path to file
+     *
+     * @return String file path
+     *
+     * @throws IOException
+     * @exception RuntimeException
+     */
     static String loadFileToStream(File inputFile) {
 
         String myStringToFile = "";
@@ -27,18 +37,25 @@ class FileToStream {
             e.printStackTrace();
         }
 
-//        ArrayList<String> myStringToFile = new ArrayList<>();
-//        for (String lst : myStringToFile) {
-//            myStringToFile.add(lst);
         return myStringToFile;
-        }
+    }
 
-//        return myStringToFile
-
+    /**
+     * Get file from stream to string.
+     *
+     * @param inFile FileInputStream stream
+     *
+     * @return cTargetString String for write to file
+     *
+     * @throws IOException
+     * @exception RuntimeException
+     */
     private static String fileFromStreamToString(FileInputStream inFile) throws IOException {
         String cOutSubString1 = "";
         String cOutSubString2 = "";
+        String cTargetString = "";
         int c;
+        String cOutSubString2 = "";
         String sInputFile;
         int iBeginFindString;
         int iLenSubString = 20;
@@ -56,6 +73,9 @@ class FileToStream {
                 cOutSubString2 = sInputFile.substring(iBeginFindString + findString.length(), iBeginFindString + (findString.length()) + (iLenSubString));
             }
         }
-        return cOutSubString1 + cOutSubString2;
+
+        cTargetString = cOutSubString1 + cOutSubString2;
+
+        return cTargetString;
     }
 }
