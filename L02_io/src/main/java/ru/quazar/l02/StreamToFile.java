@@ -2,21 +2,34 @@ package ru.quazar.l02;
 
 import lombok.Data;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
+
+/**
+ *
+ * @version $Id: StreamToFile.java,v 1.0 2019-08-15 23:30:42 Exp $
+ * @author  <A HREF="mailto:boris.mogilchenko@yandex.ru">Boris Mogilchenko</A>
+ */
 
 @Data
 class StreamToFile {
-    static void uploadStreamToFile (ArrayList<String> myList, String target) {
+
+    /**
+     * Put file to target directory.
+     *
+     * @param myList Collection of strings for upload into file
+     * @param target Upload file name
+     * @throws IOException
+     * @exception RuntimeException
+     */
+    static void uploadStreamToFile (String outString, File target) {
 
         try(FileOutputStream outFile = new FileOutputStream(target)
 
         ){
-            for(String s2f : myList){
-            byte[]buffer=s2f.getBytes();
+            byte[]buffer = outString.getBytes();
             outFile.write(buffer);
-            }
         } catch (IOException e) {
             e.printStackTrace();
         }

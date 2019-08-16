@@ -9,7 +9,6 @@ import java.net.URL;
 /**
  *
  * @version $Id: FileGetter.java,v 1.0 2019-08-15 23:30:42 Exp $
- * @since
  * @author  <A HREF="mailto:boris.mogilchenko@yandex.ru">Boris Mogilchenko</A>
  */
 
@@ -21,12 +20,13 @@ class FileGetter {
      *
      * @param fileName Source file name
      * @param filePath Source file path
+     * @throws IOException
      * @exception RuntimeException
      */
-    File getFileWithConditions(String fileName, String filePath) {
-        switch (fileName) {
+    File getFileWithConditions(String target, String filePath, String fileName) throws IOException {
+        switch (target) {
             case "1":
-                return getFileByPath(fileName, filePath);
+                return getFileByPath(filePath, fileName);
             case  "2":
                 return getFileFromResources(fileName);
             default:
@@ -37,7 +37,7 @@ class FileGetter {
     /**
      * @return File by path.
      */
-    private  File getFileByPath(String fileName, String filePath) {
+    private  File getFileByPath(String filePath, String fileName) {
         return new File(filePath, fileName);
     }
 
