@@ -1,21 +1,32 @@
 package ru.quazar.l03;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
-import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeUnit;-io.src.main.java.ru.quazar.l02.FileGetter;
 
 public class Library {
 
     public static void main(String[] args) {
+        String loadFilePath = "";
+        Timer timer = new Timer();
+        TimerTask task = new TimerTask();
 
         ArrayList<Book> booksCatalog = new ArrayList<>();
+
+        FileGetter fileGetter = new FileGetter();
+
+        if (args.length == 0) {
+            loadFilePath = "";
+        } else {
+            loadFilePath = args[1];
+        }
+
+        File inputFile = fileGetter.getFileWithConditions(args[0], loadFilePath, inFileName);
 
         try (FileInputStream fis = new FileInputStream("E://Backup//books.txt");
              InputStreamReader isr = new InputStreamReader(fis, Charset.forName("UTF-8"));
@@ -51,47 +62,6 @@ public class Library {
             scheduler.scheduleWithFixedDelay(task, initialDelay, period, TimeUnit.MILLISECONDS);
         }
 
-    }
-}
-
-class LibraryClientThread extends Thread {
-    private static final int minRange = 1000;
-    private static final int maxRange = 3000;
-    private static int rndNumber;
-
-    private static ArrayList booksCatalog;
-
-    public LibraryClientThread() {
-        this(booksCatalog);
-    }
-
-    public LibraryClientThread(ArrayList<Book> booksCatalog) {
-        this.booksCatalog = booksCatalog;
-    }
-
-    public static class BookOutputThread extends Thread {
-        private final ArrayList<Book> booksCatalog;
-
-        private BookOutputThread(ArrayList<Book> booksCatalog) {
-            this.booksCatalog = booksCatalog;
-        }
-
-        @Override
-        public void run() {
-            for (int i = 0; i < booksCatalog.size(); ++i) {
-                Random rnd = new Random();
-                rndNumber = minRange + rnd.nextInt(maxRange - minRange + 1);
-                if (!booksCatalog.get(i).getBusy()) {
-//                    Catalog.outputCatalog(1);
-                    try {
-                        sleep(rndNumber);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    booksCatalog.get(i).setBusy(true);
-                }
-            }
-        }
     }
 }
 

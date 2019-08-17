@@ -1,19 +1,12 @@
 package ru.quazar.l03;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+@Data
+@AllArgsConstructor
 public class Catalog {
     private int quantity;
-
-    public Catalog() {
-        this(0);
-    }
-
-    public Catalog(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
 
     public synchronized void inputCatalog(int amount) {
         checkAmountNotNegative(amount);
