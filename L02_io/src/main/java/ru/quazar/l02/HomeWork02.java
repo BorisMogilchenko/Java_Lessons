@@ -3,7 +3,6 @@ package ru.quazar.l02;
 import lombok.Data;
 
 import java.io.File;
-import java.util.ArrayList;
 
 /**
  * Put file "homework_02_input.txt" in any path of file system, then put into
@@ -24,13 +23,19 @@ public class HomeWork02 {
 
     public static void main(String[] args) throws Exception {
         String myStringToFile;
+        String loadFilePath = "";
 
         FileGetter fileGetter = new FileGetter();
 
-        File inputFile = fileGetter.getFileWithConditions(args[0], args[1], inFileName);
+        if (args.length < 2) {
+            loadFilePath = "";
+        } else {
+            loadFilePath = args[1];
+        }
+
+        File inputFile = fileGetter.getFileWithConditions(args[0], loadFilePath, inFileName);
         myStringToFile = FileToStream.loadFileToStream(inputFile);
-
-        File outFile = new File(inputFile.getPath());
-        StreamToFile.uploadStreamToFile(myStringToFile,outFile);
-
+        File outFile = new File(inputFile.getParent(), outFileName);
+        StreamToFile.uploadStreamToFile(myStringToFile, outFile);
+    }
 }

@@ -51,31 +51,43 @@ class FileToStream {
      * @exception RuntimeException
      */
     private static String fileFromStreamToString(FileInputStream inFile) throws IOException {
-        String cOutSubString1 = "";
-        String cOutSubString2 = "";
         String cTargetString = "";
         int c;
-        String cOutSubString2 = "";
         String sInputFile;
-        int iBeginFindString;
-        int iLenSubString = 20;
 
         StringBuilder inCharToString = new StringBuilder();
         while ((c = inFile.read()) != -1) {
             inCharToString.append(Character.toChars(c));
         }
-        sInputFile = inCharToString.toString();
-        System.out.println(sInputFile);
-        System.out.println();
-        if (sInputFile.contains(findString)) {
-            if ((iBeginFindString = sInputFile.indexOf(findString)) != -1) {
-                cOutSubString1 = sInputFile.substring(iBeginFindString - iLenSubString, iBeginFindString);
-                cOutSubString2 = sInputFile.substring(iBeginFindString + findString.length(), iBeginFindString + (findString.length()) + (iLenSubString));
+        cTargetString = findSubstring(inCharToString.toString());
+
+        return cTargetString;
+    }
+
+    /**
+     * Find target substring from source string.
+     *
+     * @param cSourceString Source string
+     *
+     * @return cFindString Finding Substring
+     *
+     */
+    private static String findSubstring(String cSourceString) {
+        String cOutSubString1 = "";
+        String cOutSubString2 = "";
+        String cFindString = "";
+        int iBeginFindString;
+        int iLenSubString = 20;
+
+        if (cSourceString.contains(findString)) {
+            if ((iBeginFindString = cSourceString.indexOf(findString)) != -1) {
+                cOutSubString1 = cSourceString.substring(iBeginFindString - iLenSubString, iBeginFindString);
+                cOutSubString2 = cSourceString.substring(iBeginFindString + findString.length(), iBeginFindString + (findString.length()) + (iLenSubString));
             }
         }
 
-        cTargetString = cOutSubString1 + cOutSubString2;
+        cFindString = cOutSubString1 + cOutSubString2;
 
-        return cTargetString;
+        return cFindString;
     }
 }
