@@ -14,33 +14,31 @@ class LibraryClientThread extends Thread {
 
     private static ArrayList booksCatalog;
 
-    public LibraryClientThread(ArrayList<Book> booksCatalog) {
-        this.booksCatalog = booksCatalog;
-    }
-    @Override
-    public void run() {
-        int rndNumber;
+    ArrayList getBooks(ArrayList<Book> booksCatalog) {
+//        public void run() {
+            int rndNumber;
 
-        for (int i = 0; i < booksCatalog.size(); ++i) {
-            Random rnd = new Random();
-            rndNumber = minRange + rnd.nextInt(maxRange - minRange + 1);
-            if (!booksCatalog.get(i).getBusy()) {
+            for (int i = 0; i < booksCatalog.size(); ++i) {
+                Random rnd = new Random();
+                rndNumber = minRange + rnd.nextInt(maxRange - minRange + 1);
+                if (!booksCatalog.get(i).isBusy) {
 //                    Catalog.outputCatalog(1);
-                try {
-                    sleep(rndNumber);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    try {
+                        sleep(rndNumber);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    booksCatalog.get(i).setBusy(true);
                 }
-                booksCatalog.get(i).setBusy(true);
             }
-        }
+//        }
     }
 
-    public static  supplyBooks() {
-        private final ArrayList<Book> booksCatalog;
-        private BookOutputThread(ArrayList<Book> booksCatalog) {
+    public ArrayList supplyBooks() {
+/*        private final ArrayList<Book> booksCatalog;
+        private getBooks(ArrayList<Book> booksCatalog) {
             this.booksCatalog = booksCatalog;
-        }
+        }*/
     }
 
 }
