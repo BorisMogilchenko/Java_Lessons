@@ -4,7 +4,7 @@ import java.io.*;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 
-public class FileToBufStream {
+class FileToBufStream {
 
     static String loadFileToStream(File inputFile, Book booksCatalog) {
         try (FileInputStream fis = new FileInputStream(inputFile);

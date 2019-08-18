@@ -2,6 +2,8 @@ package ru.quazar.l03;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,13 +11,19 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 class Book {
+    @Getter
+    @Setter
     private String title;
-    private Boolean isBusy;
+    @Getter
+    @Setter
+    private boolean isBusy;
+    @Getter
+    @Setter
     private int quantity;
 
     private List list = new ArrayList<>();
 
-    public void addBook(Book appendBook) {
+    public void addBook(ArrayList appendBook) {
         list.add(appendBook);
     }
 
@@ -50,6 +58,4 @@ class Book {
             throw new IllegalArgumentException("Negative amount of books");
         }
     }
-
-
 }

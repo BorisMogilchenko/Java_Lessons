@@ -18,7 +18,6 @@ public class Library {
     private static final int maxRange = 3000;
 
     public static void main(String[] args) {
-        String myStringToFile;
         String inFileName = "";
         int initialDelay = 0;
         int period = 250;
@@ -28,11 +27,11 @@ public class Library {
         Timer timer = new Timer(true);
         timer.scheduleAtFixedRate(timerTask, 0, 10*1000);
         System.out.println("TimerTask начал выполнение");
-        timer.scheduleAtFixedRate();
+//        timer.scheduleAtFixedRate();
 
-        Book booksCatalog = new ArrayList<>();
+        ArrayList booksCatalog = new ArrayList<>();
         ExecutorService executor = new Executors.newFixedThreadPool(1);
-        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(booksCatalog.size());
+        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool((booksCatalog).size());
 
         GettingFile gettingFile = new GettingFile();
 
@@ -45,16 +44,16 @@ public class Library {
         File inputFile = gettingFile.getFileWithConditions(args[0], inFileName);
         booksCatalog = FileToBufStream.loadFileToStream(inputFile, booksCatalog);
 
-        for (Book bk : booksCatalog) {
-            System.out.println("Название книги: " + bk.getTitle());
-            System.out.println("Наличие книги: " + (bk.getBusy() ? "Нет" : "Да"));
+        for (int i = 0; i < ((booksCatalog).size()); i++) {
+            System.out.println("Название книги: " + booksCatalog).get(i).getTitle;
+            System.out.println("Наличие книги: " + (booksCatalog).get(i).getIsBusy() ? "Нет" : "Да");
         }
 
         Runnable task = () -> System.out.println("Schedulling: " + System.nanoTime());
         scheduler.scheduleWithFixedDelay(task, initialDelay, period, TimeUnit.MILLISECONDS);
 
         int num = 0;
-        for (int i = 0; i < ((String) booksCatalog).length(); i++) {
+        for (int i = 0; i < (booksCatalog).size(); i++) {
             num++;
             LibraryClientThread libraryClientThread = new LibraryClientThread();
             libraryClientThread.setName("Thread #"+num);
