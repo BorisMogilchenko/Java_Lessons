@@ -2,7 +2,11 @@ package main.java.ru.quazar.l04.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,22 +15,17 @@ import java.util.List;
  * This class CustomList must have field ArrayList<T>.
  * This class CustomList must have method "add" taking parameter type T.
  *
- * @version $Id: FileToStream.java,v 1.0 2019-08-15 23:30:42 Exp $
+ * @version $Id: FileToStream.java,v 1.0 2019-08-19 23:30:42 Exp $
  * @author  <A HREF="mailto:boris.mogilchenko@yandex.ru">Boris Mogilchenko</A>
  */
 
 @Data
 @NoArgsConstructor
+@NoArgsConstructor
+@Entity
 class CustomList<T extends Number> {
 
-    private List<T> list = new ArrayList<>();
-
-    void add(T t) {
-        list.add(t);
-    }
-
-    void removeElement(T t) {
-        list.remove(t);
-    }
-
+    @Id
+    @GeneratedValue
+    private List< T > list = new ArrayList<>();
 }
