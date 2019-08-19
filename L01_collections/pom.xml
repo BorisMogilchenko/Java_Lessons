@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ru.quazar.l01</groupId>
-    <artifactId>L01-collections</artifactId>
+    <artifactId>L01_collections</artifactId>
     <version>1.0</version>
 
     <developers>
