@@ -1,4 +1,4 @@
-package ru.quazar.l02;
+package main.java.ru.quazar.l05.service;
 
 import lombok.Data;
 
@@ -13,7 +13,7 @@ import java.net.URL;
  */
 
 @Data
-class FileGetter {
+class FileGetterService {
 
     /**
      * Get file with input conditions.

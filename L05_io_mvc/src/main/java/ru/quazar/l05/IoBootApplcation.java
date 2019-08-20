@@ -1,7 +1,8 @@
-package ru.quazar.l02;
+package main.java.ru.quazar.l05;
 
 import lombok.Data;
 
+import main.java.ru.quazar.l02.*;
 import java.io.File;
 
 /**
@@ -16,10 +17,10 @@ import java.io.File;
  */
 
 @Data
-public class HomeWork02 {
+public class IoBootApplcation {
 
-    private static final String inFileName = "homework_02_input.txt";
-    private static final String outFileName = "homework_02_output.txt";
+    private static final String inFileName;
+    private static final String outFileName;
 
     public static void main(String[] args) throws Exception {
         String myStringToFile;

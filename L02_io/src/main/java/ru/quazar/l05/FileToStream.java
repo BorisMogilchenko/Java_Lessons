@@ -1,4 +1,4 @@
-package ru.quazar.l02;
+package ru.quazar.l05;
 
 import lombok.Data;
 

@@ -1,4 +1,4 @@
-package test.java.ru.quazar.l02;
+package test.java.ru.quazar.l05;
 
 public class MyIOTest {
 
