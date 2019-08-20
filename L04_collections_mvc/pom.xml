@@ -15,7 +15,15 @@
 	<description>Project for Spring Boot</description>
 
 	<properties>
-		<java.version>1.8</java.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<packagesPath>./target</packagesPath>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven-shade-plugin.version>3.2.1</maven-shade-plugin.version>
+		<com.google.guava.version>27.1-jre</com.google.guava.version>
+		<plugin.jar.version>3.1.2</plugin.jar.version>
+		<plugin.compiler.version>3.1</plugin.compiler.version>
+		<exec.mainClass>ru.quazar.l04.ListBootApplication</exec.mainClass>
 	</properties>
 
 	<dependencies>

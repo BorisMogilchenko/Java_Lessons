@@ -8,7 +8,7 @@ import java.net.URL;
 
 /**
  *
- * @version $Id: FileGetter.java,v 1.0 2019-08-15 23:30:42 Exp $
+ * @version $Id: FileGetterService.java,v 1.0 2019-08-20 23:30:42 Exp $
  * @author  <A HREF="mailto:boris.mogilchenko@yandex.ru">Boris Mogilchenko</A>
  */
 
