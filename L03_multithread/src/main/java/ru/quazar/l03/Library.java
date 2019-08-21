@@ -2,11 +2,12 @@ package ru.quazar.l03;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -38,11 +39,15 @@ public class Library {
         if (args.length == 0) {
             inFileName = "";
         } else {
-            inFileName = args[1];
+            inFileName = args[0];
         }
 
-        File inputFile = gettingFile.getFileWithConditions(args[0], inFileName);
-        FileToBufStream.loadFileToStream(inputFile, booksCatalog);
+        try {
+            File inputFile = gettingFile.getFileWithConditions(inFileName);
+            FileToBufStream.loadFileToStream(inputFile, booksCatalog);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
 
         for (Book bk : booksCatalog) {
             System.out.println("Название книги: " + bk.getTitle());

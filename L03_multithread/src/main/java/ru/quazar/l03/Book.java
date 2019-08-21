@@ -1,12 +1,9 @@
 package ru.quazar.l03;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-
 import java.util.ArrayList;
 
-@Data
-@AllArgsConstructor
+//@Data
+//@AllArgsConstructor
 public class Book extends ArrayList {
 //    @Getter
 //    @Setter

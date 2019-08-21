@@ -23,13 +23,21 @@ class GettingFile {
      * @throws IOException
      * @exception RuntimeException
      */
-    File getFileWithConditions(String typeTarget, String fileName) throws IOException {
-        switch (typeTarget) {
+    File getFileWithConditions(String fileName) throws IOException {
+
+        File file = new File(fileName);
+        if (file.exists()) {
+            return getFileFromRes(fileName);
+        } else {
+            throw new RuntimeException("Not correct first argument");
+        }
+
+/*        switch (typeTarget) {
             case "1":
                 return getFileFromRes(fileName);
             default:
                 throw new RuntimeException("Not correct first argument");
-        }
+        }*/
     }
 
     /**

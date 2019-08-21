@@ -31,11 +31,11 @@ public class LibraryClientThread extends Thread {
         }
     }
 
-    public Book supplyBooks() {
-/*        private final ArrayList<Book> booksCatalog;
+/*    public Book supplyBooks() {
+        private final ArrayList<Book> booksCatalog;
         private getBooks(ArrayList<Book> booksCatalog) {
             this.booksCatalog = booksCatalog;
-        }*/
-    }
+        }
+    }*/
 
 }
