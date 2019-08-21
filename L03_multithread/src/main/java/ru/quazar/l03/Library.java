@@ -29,9 +29,9 @@ public class Library {
         System.out.println("TimerTask начал выполнение");
 //        timer.scheduleAtFixedRate();
 
-        ArrayList booksCatalog = new ArrayList<>();
-        ExecutorService executor = new Executors.newFixedThreadPool(1);
-        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool((booksCatalog).size());
+        ArrayList<Book> booksCatalog = new ArrayList<>();
+//        ExecutorService executor = new Executors.newFixedThreadPool(1);
+        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(booksCatalog.size());
 
         GettingFile gettingFile = new GettingFile();
 
@@ -42,12 +42,17 @@ public class Library {
         }
 
         File inputFile = gettingFile.getFileWithConditions(args[0], inFileName);
-        booksCatalog = FileToBufStream.loadFileToStream(inputFile, booksCatalog);
+        FileToBufStream.loadFileToStream(inputFile, booksCatalog);
 
-        for (int i = 0; i < ((booksCatalog).size()); i++) {
-            System.out.println("Название книги: " + booksCatalog).get(i).getTitle;
-            System.out.println("Наличие книги: " + (booksCatalog).get(i).getIsBusy() ? "Нет" : "Да");
+        for (Book bk : booksCatalog) {
+            System.out.println("Название книги: " + bk.getTitle());
+            System.out.println("Наличие книги: " + (bk.getBusy() ? "Нет" : "Да"));
         }
+
+/*        for (int i = 0; i < (booksCatalog.size()); i++) {
+            System.out.println("Название книги: " + booksCatalog.getTitle());
+            System.out.println("Наличие книги: " + (booksCatalog.getBusy() ? "Нет" : "Да"));
+        }*/
 
         Runnable task = () -> System.out.println("Schedulling: " + System.nanoTime());
         scheduler.scheduleWithFixedDelay(task, initialDelay, period, TimeUnit.MILLISECONDS);

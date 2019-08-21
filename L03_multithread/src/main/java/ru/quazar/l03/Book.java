@@ -2,38 +2,55 @@ package ru.quazar.l03;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.util.ArrayList;
-import java.util.List;
 
 @Data
 @AllArgsConstructor
-class Book {
-    @Getter
-    @Setter
-    private String title;
-    @Getter
-    @Setter
-    private boolean isBusy;
-    @Getter
-    @Setter
+public class Book extends ArrayList {
+//    @Getter
+//    @Setter
+//    @EqualsAndHashCode(callSuper = false);
+//    private String title;
+    String title;
+//    @Getter
+//    @Setter
+//    @EqualsAndHashCode(callSuper = false);
+//    private boolean isBusy;
+    Boolean isBusy;
+//    @Getter
+//    @Setter
+//    @EqualsAndHashCode(callSuper = false);
     private int quantity;
 
-    private List list = new ArrayList<>();
-
-    public void addBook(ArrayList appendBook) {
-        list.add(appendBook);
+    public Book(String title, Boolean isBusy) {
+        this.title = title;
+        this.isBusy = isBusy;
     }
 
-    public synchronized void getBook(int amount) {
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Boolean getBusy() {
+        return isBusy;
+    }
+
+    public void setBusy(Boolean busy) {
+        isBusy = busy;
+    }
+
+    synchronized void getBook(int amount) {
         checkAmountNotNegative(amount);
         quantity += amount;
         notifyAll();
     }
 
-    public synchronized void putBook(int amount) {
+    synchronized void putBook(int amount) {
         checkAmountNotNegative(amount);
         if (amount < 0) {
             throw new IllegalArgumentException("Negative amount of books");
@@ -41,7 +58,7 @@ class Book {
         quantity -= amount;
     }
 
-    public void waitAndSupply(int amount) {
+    void waitAndSupply(int amount) {
         checkAmountNotNegative(amount);
         while (quantity < amount) {
             try {

@@ -23,7 +23,6 @@
 		<com.google.guava.version>27.1-jre</com.google.guava.version>
 		<plugin.jar.version>3.1.2</plugin.jar.version>
 		<plugin.compiler.version>3.1</plugin.compiler.version>
-		<exec.mainClass>ru.quazar.l05.IoBootApplication</exec.mainClass>
 	</properties>
 
 	<dependencies>
@@ -67,7 +66,11 @@
 			<version>1.18.8</version>
 			<scope>provided</scope>
 		</dependency>
-
+		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
 	</dependencies>
 
 	<build>
