@@ -10,7 +10,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 @Data
 @AllArgsConstructor
@@ -49,18 +48,22 @@ public class Library {
             ex.printStackTrace();
         }
 
+        System.out.println("Количество книг в каталоге: " + booksCatalog.size());
+        System.out.println();
+        System.out.println("Перечень книг в каталоге:");
         for (Book bk : booksCatalog) {
             System.out.println("Название книги: " + bk.getTitle());
             System.out.println("Наличие книги: " + (bk.getBusy() ? "Нет" : "Да"));
         }
+//        return;
 
 /*        for (int i = 0; i < (booksCatalog.size()); i++) {
             System.out.println("Название книги: " + booksCatalog.getTitle());
             System.out.println("Наличие книги: " + (booksCatalog.getBusy() ? "Нет" : "Да"));
         }*/
 
-        Runnable task = () -> System.out.println("Schedulling: " + System.nanoTime());
-        scheduler.scheduleWithFixedDelay(task, initialDelay, period, TimeUnit.MILLISECONDS);
+//        Runnable task = () -> System.out.println("Schedulling: " + System.nanoTime());
+//        scheduler.scheduleWithFixedDelay(task, initialDelay, period, TimeUnit.MILLISECONDS);
 
         int num = 0;
         for (int i = 0; i < (booksCatalog).size(); i++) {
@@ -68,13 +71,15 @@ public class Library {
             LibraryClientThread libraryClientThread = new LibraryClientThread();
             libraryClientThread.setName("Thread #"+num);
             libraryClientThread.start();
+            System.out.println("Количество книг в каталоге: " + libraryClientThread.getName());
+            System.out.println();
 
-            try {
+/*            try {
                 TimeUnit.SECONDS.sleep(2);
                 System.out.println("Scheduling: " + System.nanoTime());
             } catch (InterruptedException e) {
                 System.err.println("task interrupted");
-            }
+            }*/
         }
     }
 }

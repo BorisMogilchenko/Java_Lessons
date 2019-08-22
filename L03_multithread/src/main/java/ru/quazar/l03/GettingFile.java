@@ -25,11 +25,21 @@ class GettingFile {
      */
     File getFileWithConditions(String fileName) throws IOException {
 
+        System.out.println("Имя файла: " + fileName);
+        System.out.println();
         File file = new File(fileName);
-        if (file.exists()) {
-            return getFileFromRes(fileName);
+        if (fileName.contains("\\")) {
+            if (file.exists()) {
+                return getFileByPath(fileName);
+            } else {
+                throw new RuntimeException("Not correct first argument");
+            }
         } else {
-            throw new RuntimeException("Not correct first argument");
+            if (fileName.length() != 0) {
+                return getFileFromRes(fileName);
+            } else {
+                throw new RuntimeException("Not correct first argument");
+            }
         }
 
 /*        switch (typeTarget) {
@@ -43,8 +53,8 @@ class GettingFile {
     /**
      * @return File by path.
      */
-    private  File getFileByPath(String filePath, String fileName) {
-        return new File(filePath, fileName);
+    private  File getFileByPath(String fileName) {
+        return new File(fileName);
     }
 
     /**
