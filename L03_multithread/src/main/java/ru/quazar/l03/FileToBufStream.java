@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 class FileToBufStream {
 
-    static ArrayList loadFileToStream(File inputFile, ArrayList booksCatalog) {
+    static ArrayList loadFileToStream(File inputFile, Book booksCatalog) {
         try (FileInputStream fis = new FileInputStream(inputFile);
              InputStreamReader isr = new InputStreamReader(fis, Charset.forName("UTF-8"));
              BufferedReader bufRead = new BufferedReader(isr)

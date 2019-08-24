@@ -6,32 +6,28 @@ import lombok.Data;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 @Data
 @AllArgsConstructor
 public class Library {
-    private static final int minRange = 1000;
-    private static final int maxRange = 3000;
+    private static final int workTime = 30000;
+    private static long START_TIME;
 
     public static void main(String[] args) {
+        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+        START_TIME = System.currentTimeMillis();
         String inFileName = "";
         int initialDelay = 0;
         int period = 250;
-        long startTime=System.currentTimeMillis();
 
-        TimerTask timerTask = new MyTimerTask();
-        Timer timer = new Timer(true);
-        timer.scheduleAtFixedRate(timerTask, 0, 10*1000);
         System.out.println("TimerTask начал выполнение");
-//        timer.scheduleAtFixedRate();
 
-        ArrayList<Book> booksCatalog = new ArrayList<>();
-//        ExecutorService executor = new Executors.newFixedThreadPool(1);
-        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(booksCatalog.size());
+        Book booksCatalog = new Book();
+//        ExecutorService executor = Executors.newFixedThreadPool(1);
+//        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(booksCatalog.size());
 
         GettingFile gettingFile = new GettingFile();
 
@@ -55,32 +51,26 @@ public class Library {
             System.out.println("Название книги: " + bk.getTitle());
             System.out.println("Наличие книги: " + (bk.getBusy() ? "Нет" : "Да"));
         }
-//        return;
 
-/*        for (int i = 0; i < (booksCatalog.size()); i++) {
-            System.out.println("Название книги: " + booksCatalog.getTitle());
-            System.out.println("Наличие книги: " + (booksCatalog.getBusy() ? "Нет" : "Да"));
-        }*/
-
-//        Runnable task = () -> System.out.println("Schedulling: " + System.nanoTime());
-//        scheduler.scheduleWithFixedDelay(task, initialDelay, period, TimeUnit.MILLISECONDS);
-
-        int num = 0;
-        for (int i = 0; i < (booksCatalog).size(); i++) {
-            num++;
+        while (System.currentTimeMillis() - START_TIME < workTime) for (int i = 0; i < (booksCatalog).size(); i++) {
+            scheduler.scheduleWithFixedDelay(new Runnable() {
+                @Override
+                public void run() {
+                    int num = 0;
+                    num++;
+                    System.out.println("Scheduling Thread #" + num);
+                }
+            }, initialDelay, period, TimeUnit.MILLISECONDS);
             LibraryClientThread libraryClientThread = new LibraryClientThread();
-            libraryClientThread.setName("Thread #"+num);
+            libraryClientThread.setName("Thread #" + i);
             libraryClientThread.start();
-            System.out.println("Количество книг в каталоге: " + libraryClientThread.getName());
-            System.out.println();
-
-/*            try {
-                TimeUnit.SECONDS.sleep(2);
-                System.out.println("Scheduling: " + System.nanoTime());
-            } catch (InterruptedException e) {
-                System.err.println("task interrupted");
-            }*/
+            libraryClientThread.getBooks(booksCatalog);
         }
+        scheduler.shutdownNow();
+        System.out.println("Число запущенных потоков: " + ThreadStatus.getStatus());
+        System.out.println();
+        System.out.println("Количество книг в каталоге: " + booksCatalog.getQuantity());
+        System.out.println();
     }
 }
 

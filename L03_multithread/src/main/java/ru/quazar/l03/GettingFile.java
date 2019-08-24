@@ -42,12 +42,6 @@ class GettingFile {
             }
         }
 
-/*        switch (typeTarget) {
-            case "1":
-                return getFileFromRes(fileName);
-            default:
-                throw new RuntimeException("Not correct first argument");
-        }*/
     }
 
     /**

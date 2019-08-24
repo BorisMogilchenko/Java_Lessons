@@ -2,22 +2,9 @@ package ru.quazar.l03;
 
 import java.util.ArrayList;
 
-//@Data
-//@AllArgsConstructor
 public class Book extends ArrayList {
-//    @Getter
-//    @Setter
-//    @EqualsAndHashCode(callSuper = false);
-//    private String title;
-    String title;
-//    @Getter
-//    @Setter
-//    @EqualsAndHashCode(callSuper = false);
-//    private boolean isBusy;
-    Boolean isBusy;
-//    @Getter
-//    @Setter
-//    @EqualsAndHashCode(callSuper = false);
+    private String title;
+    private Boolean isBusy;
     private int quantity;
 
     public Book(String title, Boolean isBusy) {
@@ -41,9 +28,13 @@ public class Book extends ArrayList {
         isBusy = busy;
     }
 
+    public int getQuantity() {
+        return quantity;
+    }
+
     synchronized void getBook(int amount) {
         checkAmountNotNegative(amount);
-        quantity += amount;
+        quantity -= amount;
         notifyAll();
     }
 
@@ -52,14 +43,14 @@ public class Book extends ArrayList {
         if (amount < 0) {
             throw new IllegalArgumentException("Negative amount of books");
         }
-        quantity -= amount;
+        quantity += amount;
     }
 
-    void waitAndSupply(int amount) {
+    void waitAndSupply(int amount, long rnd) {
         checkAmountNotNegative(amount);
         while (quantity < amount) {
             try {
-                wait();
+                wait(rnd);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
