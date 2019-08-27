@@ -1,4 +1,5 @@
 .idea
+/classes
 
 /L01_collections/.idea
 /L01_collections/target
@@ -9,11 +10,14 @@
 /L03_multithread/.idea
 /L03_multithread/target
 
-/L04_collections_mvc/.idea
-/L04_collections_mvc/target
+/L04_springboot_collections/.idea
+/L04_springboot_collections/target
 
-/L05_io_mvc/.idea
-/L05_io_mvc/target
+/L05_springboot_io/.idea
+/L05_springboot_io/target
+
+/L06_springboot_multithread/.idea
+/L06_springboot_multithread/target
 
 # Compiled class file
 *.class

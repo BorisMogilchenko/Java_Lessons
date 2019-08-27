@@ -25,7 +25,7 @@ public class Library {
 
         System.out.println("TimerTask начал выполнение");
 
-        Book booksCatalog = new Book();
+        ArrayList booksCatalog = new ArrayList();
 //        ExecutorService executor = Executors.newFixedThreadPool(1);
 //        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(booksCatalog.size());
 
@@ -47,9 +47,13 @@ public class Library {
         System.out.println("Количество книг в каталоге: " + booksCatalog.size());
         System.out.println();
         System.out.println("Перечень книг в каталоге:");
-        for (Book bk : booksCatalog) {
-            System.out.println("Название книги: " + bk.getTitle());
-            System.out.println("Наличие книги: " + (bk.getBusy() ? "Нет" : "Да"));
+        for (Object bk : booksCatalog) {
+            System.out.println("Название книги: " + bk);
+            System.out.println();
+/*            for (Book book : bk) {
+                System.out.println("Название книги: " + book.getTitle());
+                System.out.println("Наличие книги: " + (book.getBusy() ? "Нет" : "Да"));
+            }*/
         }
 
         while (System.currentTimeMillis() - START_TIME < workTime) for (int i = 0; i < (booksCatalog).size(); i++) {
@@ -64,13 +68,20 @@ public class Library {
             LibraryClientThread libraryClientThread = new LibraryClientThread();
             libraryClientThread.setName("Thread #" + i);
             libraryClientThread.start();
-            libraryClientThread.getBooks(booksCatalog);
+//            libraryClientThread.getBooks(booksCatalog);
         }
         scheduler.shutdownNow();
+/*        int isFree = 0;
+        for (Object bsk : booksCatalog) {
+            for (Book bk : bsk) {
+                if (!bk.getBusy())
+                    isFree++;
+            }
+        }
         System.out.println("Число запущенных потоков: " + ThreadStatus.getStatus());
         System.out.println();
-        System.out.println("Количество книг в каталоге: " + booksCatalog.getQuantity());
-        System.out.println();
+        System.out.println("Количество книг в каталоге: " + isFree);
+        System.out.println();*/
     }
 }
 
