@@ -14,7 +14,7 @@ import java.util.List;
  * This class CustomList must have field ArrayList<T>.
  * This class CustomList must have method "add" taking parameter type T.
  *
- * @version $Id: FileToStream.java,v 1.0 2019-08-19 23:30:42 Exp $
+ * @version $Id: CustomList.java,v 1.0 2019-08-19 23:30:42 Exp $
  * @author  <A HREF="mailto:boris.mogilchenko@yandex.ru">Boris Mogilchenko</A>
  */
 

@@ -2,8 +2,8 @@ package ru.quazar.l04springboot;
 
 import lombok.Data;
 import ru.quazar.l04springboot.model.CustomList;
-import ru.quazar.l04springboot.service.MinimumClassService;
-import ru.quazar.l04springboot.service.MaximumClassService;
+import ru.quazar.l04springboot.service.MinimumClass;
+import ru.quazar.l04springboot.service.MaximumClass;
 
 import java.util.Random;
 
@@ -12,7 +12,7 @@ import java.util.Random;
  * Write to the file "homework_02_output.txt" twenty symbols behind and
  * twenty symbols after finding substring.
  *
- * @version $Id: FileToStream.java,v 1.0 2019-08-15 23:30:42 Exp $
+ * @version $Id: ListBootApplication.java,v 1.0 2019-08-15 23:30:42 Exp $
  * @author  <A HREF="mailto:boris.mogilchenko@yandex.ru">Boris Mogilchenko</A>
  */
 

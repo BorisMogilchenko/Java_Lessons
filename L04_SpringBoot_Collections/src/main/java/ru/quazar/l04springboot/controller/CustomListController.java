@@ -1,8 +1,9 @@
 package ru.quazar.l04springboot.controller;
 
-import ru.quazar.l04springboot.model.CustomList;
-import ru.quazar.l04springboot.service.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import ru.quazar.l04springboot.model.CustomList;
+import ru.quazar.l04springboot.service.CustomListService;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ public class CustomListController {
     private CustomListService listService;
 
     @GetMapping("/lists")
-    List<list> getList() {
+    List<CustomList> getList() {
         return CustomListService.getLists();
     }
 
