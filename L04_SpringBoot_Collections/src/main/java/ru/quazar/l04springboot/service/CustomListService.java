@@ -21,19 +21,30 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @Service
-public class CustomListService<T extends Number> {
+public class CustomListService {
     @Autowired
-    private CustomListRepository repository;
+    private static CustomListRepository repository;
 
-    public List<CustomList> getLists() {
+    /**
+     * @return
+     */
+    public static List<CustomList> getLists() {
         return repository.findAll();
     }
 
-    public CustomList createList(CustomList list) {
-        return repository.save(list.add(t));
+    /**
+     *
+     */
+    public static CustomList<Integer> createList(CustomList list) {
+        return repository.save(list.add(rndNumber));
     }
 
-    public CustomList updateList(Integer integer, CustomList list) {
+    /**
+     * @param integer
+     * @param list
+     * @return
+     */
+    public static CustomList updateList(Integer integer, CustomList list) {
         CustomList savedList = repository.findById(integer).get();
         savedList.setList(list.getList());
         return repository.save(savedList);
@@ -45,14 +56,14 @@ public class CustomListService<T extends Number> {
      * @param integer Id element of List
      * @return List by Id from repository
      */
-    public CustomList getList(Integer integer) {
+    public static CustomList getList(Integer integer) {
         return repository.findById(integer).get();
     }
 
     /**
      * Delete all elements of collection
      */
-    public void deleteAllLists() {
+    public static void deleteAllLists() {
         repository.deleteAll();
     }
 
@@ -61,7 +72,7 @@ public class CustomListService<T extends Number> {
      *
      * @param integer Id element of List
      */
-    public void deleteList(Integer integer) {
+    public static void deleteList(Integer integer) {
         repository.deleteById(integer);
     }
 }

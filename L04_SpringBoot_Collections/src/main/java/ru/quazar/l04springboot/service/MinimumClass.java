@@ -12,14 +12,21 @@ import org.springframework.stereotype.Service;
  *
  * return Collections.min Minimum value of element collection/
  *
- * @version $Id: MinimumClass.java,v 1.0 2019-08-19 23:30:42 Exp $
+ * @version $Id: MinimumClass.java,v 1.0 2019-08-27 23:30:42 Exp $
  * @author  <A HREF="mailto:boris.mogilchenko@yandex.ru">Boris Mogilchenko</A>
  */
 
 @NoArgsConstructor
 @Service
 public class MinimumClass<T extends Comparable<T>> {
-    @Autowired     T minElement(CustomList myList) {
+    /**
+     * Find element with minimum value
+     *
+     * @param myList Collection of integer elements
+     * @return Element with minimum value
+     */
+    @Autowired
+    public T minElement(CustomList myList) {
         return (T) Collections.min(myList.getList());
     }
 }

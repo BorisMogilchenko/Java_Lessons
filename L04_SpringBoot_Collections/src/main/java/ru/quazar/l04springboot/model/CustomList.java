@@ -25,5 +25,13 @@ public class CustomList<T extends Number> {
 
     @Id
     @GeneratedValue
-    private List< T > list = new ArrayList<>();
+    private List<T> list = new ArrayList<>();
+
+    public void add(T t) {
+        list.add(t);
+    }
+
+    void removeElement(T t) {
+        list.remove(t);
+    }
 }

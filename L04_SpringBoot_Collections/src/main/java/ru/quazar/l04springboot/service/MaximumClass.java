@@ -11,14 +11,21 @@ import org.springframework.stereotype.Service;
  *
  * return Collections.max Maximum value of element collection/
  *
- * @version $Id: MaximumClass.java,v 1.0 2019-08-19 23:30:42 Exp $
+ * @version $Id: MaximumClass.java,v 1.0 2019-08-27 23:30:42 Exp $
  * @author  <A HREF="mailto:boris.mogilchenko@yandex.ru">Boris Mogilchenko</A>
  */
 
 @NoArgsConstructor
 @Service
+/**
+ * Find element with maximum value
+ *
+ * @param myList Collection of integer elements
+ * @return Element with maximum value
+ */
 public class MaximumClass<T extends Comparable<T>> {
-    @Autowired     T maxElement(CustomList myList) {
+    @Autowired
+    public T maxElement(CustomList myList) {
         return (T) Collections.max(myList.getList());
     }
 }
