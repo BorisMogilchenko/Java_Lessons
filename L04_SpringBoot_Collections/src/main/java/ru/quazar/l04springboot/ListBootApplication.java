@@ -1,9 +1,14 @@
 package ru.quazar.l04springboot;
 
-import lombok.Data;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import ru.quazar.l04springboot.model.CustomList;
-import ru.quazar.l04springboot.service.MinimumClass;
-import ru.quazar.l04springboot.service.MaximumClass;
+import ru.quazar.l04springboot.repository.CustomListRepository;
+import ru.quazar.l04springboot.service.CheckArgsService;
+import ru.quazar.l04springboot.service.MaximumClassService;
+import ru.quazar.l04springboot.service.MinimumClassService;
 
 import java.util.Random;
 
@@ -16,29 +21,35 @@ import java.util.Random;
  * @author  <A HREF="mailto:boris.mogilchenko@yandex.ru">Boris Mogilchenko</A>
  */
 
-@Data
+@SpringBootApplication
 public class ListBootApplication {
 
     private MinimumClass minClass;
     private MaximumClass maxClass;
     private static final int minRange = 0;
     private static final int maxRange = 999;
-    private static final int cycleCounter = 100;
 
     public static void main(String[] args) {
-        int rndNumber;
+        SpringApplication.run(ListBootApplication.class, args);
+    }
 
-        CustomList list = new CustomList();
-        for (int i = minRange; i < cycleCounter; i++) {
-            Random rnd = new Random();
-            rndNumber = minRange + rnd.nextInt(maxRange - minRange + 1);
-            list.add(rndNumber);
-        }
+    @Bean
+    CommandLineRunner initDatabase(CustomListRepository repository) {
+        return args -> {
+            private final int cycleCounter = CheckArgsService.checkIteration(args);
+            CustomList list = new CustomList();
+            for (int i = minRange; i < cycleCounter; i++) {
+                Random rnd = new Random();
+                int rndNumber = minRange + rnd.nextInt(maxRange - minRange + 1);
+                list.add(rndNumber);
+            }
+            repository.save(list);
 
-        MinimumClass<Integer> minClass = new MinimumClass<>();
-        MaximumClass<Integer> maxClass = new MaximumClass<>();
+            MinimumClassService<Integer> minClass = new MinimumClassService<>();
+            MaximumClassService<Integer> maxClass = new MaximumClassService<>();
 
-        System.out.println("Минимальное значение:  " + (int) minClass.minElement(list));
-        System.out.println("Максимальное значение: " + (int) maxClass.maxElement(list));
+            System.out.println("Минимальное значение:  " + (int) minClass.minElement(list));
+            System.out.println("Максимальное значение: " + (int) maxClass.maxElement(list));
+        };
     }
 }

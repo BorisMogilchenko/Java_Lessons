@@ -12,13 +12,13 @@ import org.springframework.stereotype.Service;
  *
  * return Collections.min Minimum value of element collection/
  *
- * @version $Id: MinimumClass.java,v 1.0 2019-08-27 23:30:42 Exp $
+ * @version $Id: MinimumClassService.java,v 1.0 2019-08-27 23:30:42 Exp $
  * @author  <A HREF="mailto:boris.mogilchenko@yandex.ru">Boris Mogilchenko</A>
  */
 
 @NoArgsConstructor
 @Service
-public class MinimumClass<T extends Comparable<T>> {
+public class MinimumClassService<T extends Comparable<T>> {
     /**
      * Find element with minimum value
      *
