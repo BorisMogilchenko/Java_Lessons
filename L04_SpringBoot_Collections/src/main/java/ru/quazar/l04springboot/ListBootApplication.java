@@ -36,7 +36,7 @@ public class ListBootApplication {
     @Bean
     CommandLineRunner initDatabase(CustomListRepository repository) {
         return args -> {
-            private final int cycleCounter = CheckArgsService.checkIteration(args);
+            final int cycleCounter = CheckArgsService.checkIteration(args);
             CustomList list = new CustomList();
             for (int i = minRange; i < cycleCounter; i++) {
                 Random rnd = new Random();

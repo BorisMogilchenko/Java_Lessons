@@ -26,23 +26,32 @@ public class CustomListService {
     private static CustomListRepository repository;
 
     /**
-     * @return
+     * Get list all elements from repository
+     *
+     * @param list Collection of Integer elements
+     * @return List all elements from repository
      */
     public static List<CustomList> getLists() {
         return repository.findAll();
     }
 
     /**
+     * Create list integer elements with saving into repository
      *
+     * @param integer Integer elements of list collection
+     * @param list Collection list by type CustomList
+     * @return Collection list with saving into repository
      */
     public static CustomList<Integer> createList(CustomList list) {
-        return repository.save(list.add(rndNumber));
+        return repository.save(list);
     }
 
     /**
-     * @param integer
-     * @param list
-     * @return
+     * Update value of element by list collection with saving into repository
+     *
+     * @param integer Index of element in the list
+     * @param list Collection of integer elements
+     * @return Updated list with saving into repository
      */
     public static CustomList updateList(Integer integer, CustomList list) {
         CustomList savedList = repository.findById(integer).get();
@@ -61,7 +70,7 @@ public class CustomListService {
     }
 
     /**
-     * Delete all elements of collection
+     * Delete all elements of collection in repository
      */
     public static void deleteAllLists() {
         repository.deleteAll();

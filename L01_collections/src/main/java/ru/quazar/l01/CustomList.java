@@ -25,6 +25,14 @@ class CustomList<T extends Number> {
         list.add(t);
     }
 
+    public T getList(T t) {
+        return t;
+    }
+
+    public void setList(T t) {
+        this.t = t;
+    }
+
     void removeElement(T t) {
         list.remove(t);
     }
