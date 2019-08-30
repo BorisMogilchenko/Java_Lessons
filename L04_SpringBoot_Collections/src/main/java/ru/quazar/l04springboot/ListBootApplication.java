@@ -24,8 +24,8 @@ import java.util.Random;
 @SpringBootApplication
 public class ListBootApplication {
 
-    private MinimumClass minClass;
-    private MaximumClass maxClass;
+//    private MinimumClass minClass;
+//    private MaximumClass maxClass;
     private static final int minRange = 0;
     private static final int maxRange = 999;
 

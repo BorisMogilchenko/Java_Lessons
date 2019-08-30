@@ -1,14 +1,14 @@
 package ru.quazar.l04springboot.service;
 
 /**
- *
+ * Check of values incoming arguments
  */
 public class CheckArgsService {
     /**
+     * Check count cycle iteration
      *
-     *
-     * @param args
-     * @return
+     * @param args Array of incoming arguments
+     * @return Integer type of count cycle iteration
      * @throws NumberFormatException
      */
     public static int checkIteration(String[] args) throws NumberFormatException {
