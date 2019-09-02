@@ -20,7 +20,7 @@ import java.util.List;
 public class CustomListController {
 
     @Autowired
-    private CustomListService listService;
+    private CustomListService CustomListService;
 
     @GetMapping("/lists")
     List<CustomList> getList() {
