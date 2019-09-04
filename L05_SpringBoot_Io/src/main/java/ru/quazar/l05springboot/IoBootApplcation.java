@@ -3,8 +3,7 @@ package ru.quazar.l05springboot;
 import lombok.Data;
 
 import ru.quazar.l05springboot.model.FileToStream;
-import ru.quazar.l05springboot.repository.IoStreamRepository;
-import ru.quazar.l05springboot.service.*;
+
 import java.io.File;
 
 /**

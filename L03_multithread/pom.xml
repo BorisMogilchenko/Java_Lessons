@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>ru.quazar.l01</groupId>
+    <groupId>ru.quazar.l03</groupId>
     <artifactId>L03_multithread</artifactId>
     <version>1.0</version>
 

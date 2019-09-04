@@ -2,10 +2,6 @@ package ru.quazar.l05springboot.service;
 
 import lombok.Data;
 
-import ru.quazar.l05springboot.model.FileToStream;
-import ru.quazar.l05springboot.repository.IoStreamRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -17,7 +13,7 @@ import java.net.URL;
  */
 
 @Data
-class FileGetterService {
+public class FileGetterService {
 
     /**
      * Get file with input conditions.

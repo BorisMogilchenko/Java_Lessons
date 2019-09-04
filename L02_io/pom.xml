@@ -9,8 +9,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>ru.quazar.l01</groupId>
-    <artifactId>L04_io_mvc</artifactId>
+    <groupId>ru.quazar.l02</groupId>
+    <artifactId>L02-io</artifactId>
     <version>1.0</version>
 
     <developers>
@@ -27,8 +27,9 @@
         <maven-shade-plugin.version>3.2.1</maven-shade-plugin.version>
         <com.google.guava.version>27.1-jre</com.google.guava.version>
         <plugin.jar.version>3.1.2</plugin.jar.version>
+        <plugin.dependency.version>3.1.1</plugin.dependency.version>
         <plugin.compiler.version>3.1</plugin.compiler.version>
-        <exec.mainClass>ru.quazar.springboot.ListBootApplication</exec.mainClass>
+        <exec.mainClass>ru.quazar.l02.HomeWork02</exec.mainClass>
     </properties>
 
     <dependencies>
@@ -43,16 +44,15 @@
             <version>${maven-shade-plugin.version}</version>
         </dependency>
         <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.8</version>
+        </dependency>
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.8</version>
-            <scope>provided</scope>
         </dependency>
     </dependencies>
 
@@ -77,7 +77,7 @@
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
                             <classpathLayoutType>simple</classpathLayoutType>
-                            <mainClass>ru.quazar.l05.HomeWork02</mainClass>
+                            <mainClass>ru.quazar.l02.HomeWork02</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

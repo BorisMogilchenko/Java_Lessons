@@ -2,7 +2,6 @@ package ru.quazar.l05springboot.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,12 +17,11 @@ import java.util.List;
  */
 
 @Data
-@NoAutoArgsConstructor
 @NoArgsConstructor
 @Entity
 public class FileToStream<T extends Number> {
 
     @Id
     @GeneratedValue
-    private List< T > list = new ArrayList<>();
+    private List<T> list = new ArrayList<>();
 }
