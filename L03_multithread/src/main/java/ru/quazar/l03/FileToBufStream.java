@@ -8,8 +8,7 @@ class FileToBufStream {
 //    private static Book booksList;
 
     static Book loadFileToStream(File inputFile) {
-        ArrayList booksList;
-        booksList = new ArrayList();
+        ArrayList<Book> booksList = new ArrayList<>();
         try (FileInputStream fis = new FileInputStream(inputFile);
              InputStreamReader isr = new InputStreamReader(fis, Charset.forName("UTF-8"));
              BufferedReader bufRead = new BufferedReader(isr)

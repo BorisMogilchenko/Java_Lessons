@@ -23,7 +23,7 @@ class GettingFile {
      * @throws IOException
      * @exception RuntimeException
      */
-    File getFileWithConditions(String fileName) throws IOException {
+    File getFileWithConditions(String fileName) {
 
         System.out.println("Имя файла: " + fileName);
         System.out.println();
@@ -41,27 +41,31 @@ class GettingFile {
                 throw new RuntimeException("Not correct first argument");
             }
         }
-
     }
 
     /**
      * @return File by path.
      */
-    private  File getFileByPath(String fileName) {
+    private File getFileByPath(String fileName) {
         return new File(fileName);
     }
 
     /**
      * @return File from resources.
      */
-    private File getFileFromRes(String fileName) throws IOException {
+    private File getFileFromRes(String fileName) {
         ClassLoader classLoader = getClass().getClassLoader();
 
         URL srcResource = classLoader.getResource(fileName);
         if (srcResource == null) {
-            throw new IOException("file is not found!");
+            try {
+                throw new IOException("file is not found!");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         } else {
             return new File(srcResource.getFile());
         }
+        return null;
     }
 }

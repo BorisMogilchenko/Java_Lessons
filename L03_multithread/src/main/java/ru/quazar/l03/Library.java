@@ -4,14 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-
-import static java.lang.Thread.sleep;
 
 @Data
 @AllArgsConstructor
@@ -43,12 +39,8 @@ public class Library {
         }
 
         ArrayList booksCatalog;
-        try {
-            File inputFile = gettingFile.getFileWithConditions(inFileName);
-            booksCatalog = FileToBufStream.loadFileToStream(inputFile);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+        File inputFile = gettingFile.getFileWithConditions(inFileName);
+        booksCatalog = FileToBufStream.loadFileToStream(inputFile);
 
 //        System.out.println("Количество книг в каталоге: " + booksCatalog.size());
 //        System.out.println();

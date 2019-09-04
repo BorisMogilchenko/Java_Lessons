@@ -2,7 +2,7 @@ package ru.quazar.l03;
 
 import java.util.ArrayList;
 
-public class Book extends ArrayList {
+public class Book<String> extends ArrayList {
     private String title;
     private Boolean isBusy;
     private int quantity;
