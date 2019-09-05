@@ -28,7 +28,7 @@ class GettingFile {
         System.out.println("Имя файла: " + fileName);
         System.out.println();
         File file = new File(fileName);
-        if (fileName.contains("\\")) {
+        if (fileName.contains(file.separator)) {
             if (file.exists()) {
                 return getFileByPath(fileName);
             } else {

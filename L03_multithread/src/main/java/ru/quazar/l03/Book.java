@@ -1,15 +1,31 @@
 package ru.quazar.l03;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class Book extends ArrayList {
+public class Book<T> extends ArrayList {
     private String title;
     private Boolean isBusy;
     private int quantity;
+    private List<T> list = new ArrayList<>();
+
+    public Book() {}
 
     public Book(String title, Boolean isBusy) {
         this.title = title;
         this.isBusy = isBusy;
+    }
+
+    public  void addList(T t) {
+        list.add(t);
+    }
+
+    public List<T> getList() {
+        return list;
+    }
+
+    public void setList(List<T> newList) {
+        this.list = newList;
     }
 
     public String getTitle() {
