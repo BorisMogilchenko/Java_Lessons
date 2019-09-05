@@ -5,6 +5,7 @@ import lombok.Data;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -27,7 +28,7 @@ public class Library {
         System.out.println("TimerTask начал выполнение");
 
 //        Book booksCatalog = new Book();
-//        ExecutorService executor = Executors.newFixedThreadPool(1);
+        ExecutorService executor = Executors.newFixedThreadPool(1);
 //        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(booksCatalog.size());
 
         GettingFile gettingFile = new GettingFile();
@@ -38,7 +39,7 @@ public class Library {
             inFileName = args[0];
         }
 
-        ArrayList booksCatalog;
+        ArrayList<Book> booksCatalog;
         File inputFile = gettingFile.getFileWithConditions(inFileName);
         booksCatalog = FileToBufStream.loadFileToStream(inputFile);
 

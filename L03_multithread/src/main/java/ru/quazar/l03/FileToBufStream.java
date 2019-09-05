@@ -5,10 +5,9 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 
 class FileToBufStream {
-//    private static Book booksList;
 
     static Book loadFileToStream(File inputFile) {
-        ArrayList<Book> booksList = new ArrayList<>();
+        Book booksList = new ArrayList<String>();
         try (FileInputStream fis = new FileInputStream(inputFile);
              InputStreamReader isr = new InputStreamReader(fis, Charset.forName("UTF-8"));
              BufferedReader bufRead = new BufferedReader(isr)
