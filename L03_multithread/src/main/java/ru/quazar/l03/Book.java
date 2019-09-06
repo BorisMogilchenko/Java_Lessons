@@ -1,13 +1,12 @@
 package ru.quazar.l03;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class Book<T> extends ArrayList {
+public class Book extends ArrayList {
     private String title;
     private Boolean isBusy;
     private int quantity;
-    private List<T> list = new ArrayList<>();
+//    private List<T> list = new ArrayList<>();
 
     public Book() {}
 
@@ -16,7 +15,7 @@ public class Book<T> extends ArrayList {
         this.isBusy = isBusy;
     }
 
-    public  void addList(T t) {
+/*    public  void addList(T t) {
         list.add(t);
     }
 
@@ -26,7 +25,7 @@ public class Book<T> extends ArrayList {
 
     public void setList(List<T> newList) {
         this.list = newList;
-    }
+    }*/
 
     public String getTitle() {
         return title;

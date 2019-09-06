@@ -3,7 +3,9 @@ package ru.quazar.l03;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import java.io.File;
+import java.io.*;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -29,8 +31,7 @@ public class Library {
 
         System.out.println("TimerTask начал выполнение");
 
-//        Book booksCatalog = new Book();
-        ExecutorService executor = Executors.newFixedThreadPool(1);
+        ExecutorService executor = Executors.newFixedThreadPool(10);
 //        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(booksCatalog.size());
 
         GettingFile gettingFile = new GettingFile();
@@ -42,22 +43,23 @@ public class Library {
         }
 
         File inputFile = gettingFile.getFileWithConditions(inFileName);
-        Book booksCatalog = FileToBufStream.loadFileToStream(inputFile);
-
-//        System.out.println("Количество книг в каталоге: " + booksCatalog.size());
-//        System.out.println();
-//        System.out.println("Перечень книг в каталоге:");
-/*        for (Book bk : booksCatalog) {
-            System.out.println("Название книги: " + bk);
-            System.out.println();
-                System.out.println("Название книги: " + bk.getTitle());
-                System.out.println("Наличие книги: " + (bk.getBusy() ? "Нет" : "Да"));
-        }*/
-        for (int k = 0; k < booksCatalog.size(); k++) {
-            System.out.println("Название книги: " + booksCatalog.get(k));
-            System.out.println("Название книги: " + booksCatalog.getTitle());
-            System.out.println("Наличие книги: " + (booksCatalog.getBusy() ? "Нет" : "Да"));
+//        Book booksCatalog = FileToBufStream.loadFileToStream(inputFile);
+        ArrayList<Book> booksCatalog = new ArrayList<>();
+        try (FileInputStream fis = new FileInputStream(inputFile);
+             InputStreamReader isr = new InputStreamReader(fis, Charset.forName("UTF-8"));
+             BufferedReader bufRead = new BufferedReader(isr)
+        ) {
+            String line;
+            while ((line = bufRead.readLine()) != null) {
+                booksCatalog.add(new Book(line, false));
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace(System.out);
         }
+        booksCatalog.forEach(bk -> {
+            System.out.println("Название книги: " + bk.getTitle());
+            System.out.println("Наличие книги: " + (bk.getBusy() ? "Нет" : "Да"));
+        });
 
         while (System.currentTimeMillis() - START_TIME < workTime)
             for (int i = 0; i < (booksCatalog).size(); i++) {
@@ -72,35 +74,49 @@ public class Library {
                 LibraryClientThread libraryClientThread = new LibraryClientThread();
                 libraryClientThread.setName("Thread #" + i);
                 libraryClientThread.start();
-                int rndNumber;
-                for (int j = 0; j < booksCatalog.size(); j++) {
-                    System.out.println("Название книги: " + booksCatalog.getTitle());
-                    if (booksCatalog.getBusy()) {
+                final int[] rndNumber = new int[1];
+                booksCatalog.forEach(bk -> {
+                    if (bk.getBusy()) {
+                        System.out.println("Название книги: " + bk.getTitle());
+                        System.out.println();
+                        System.out.println("Наличие книги: " + (bk.getBusy() ? "Нет" : "Да"));
                         Random rnd = new Random();
-                        rndNumber = minRange + rnd.nextInt(maxRange - minRange + 1);
-                        booksCatalog.waitAndSupply(1, rndNumber);
+                        rndNumber[0] = minRange + rnd.nextInt(maxRange - minRange + 1);
+                        bk.waitAndSupply(1, rndNumber[0]);
                         try {
-                            booksCatalog.getBook(1);
-                            sleep(rndNumber);
-                            booksCatalog.putBook(1);
+                            bk.getBook(1);
+                            sleep(rndNumber[0]);
+                            System.out.println("Возврат книги: " + bk.getTitle());
+                            System.out.println();
+                            bk.putBook(1);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
-                        booksCatalog.setBusy(true);
+                        System.out.println("Выдача книги: " + bk.getTitle());
+                        System.out.println();
+                        bk.setBusy(true);
+
+                        System.exit(0);
+
                     }
-                }
-//            libraryClientThread.getBooks(booksCatalog);
+                });
         }
         scheduler.shutdownNow();
-        int isFree = 0;
-        for (int i = 0; i < booksCatalog.size(); i++) {
+        final int[] isFree = {0};
+/*        for (int i = 0; i < booksCatalog.size(); i++) {
             if (booksCatalog.getBusy()) {
-                isFree++;
+                isFree[0]++;
             }
-        }
+        }*/
+        booksCatalog.forEach(bk -> {
+            if (bk.getBusy()) {
+                isFree[0]++;
+            }
+        });
+
         System.out.println("Число запущенных потоков: " + ThreadStatus.getStatus());
         System.out.println();
-        System.out.println("Количество книг в каталоге: " + isFree);
+        System.out.println("Количество книг в каталоге: " + isFree[0]);
         System.out.println();
     }
 }
