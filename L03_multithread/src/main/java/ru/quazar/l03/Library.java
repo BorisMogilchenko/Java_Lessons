@@ -23,7 +23,7 @@ public class Library {
     private static long START_TIME;
 
     public static void main(String[] args) {
-        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(10);
         START_TIME = System.currentTimeMillis();
         String inFileName = "";
         int initialDelay = 0;
@@ -57,6 +57,7 @@ public class Library {
             ex.printStackTrace(System.out);
         }
         booksCatalog.forEach(bk -> {
+            System.out.println("Содержание книги: " + bk);
             System.out.println("Название книги: " + bk.getTitle());
             System.out.println("Наличие книги: " + (bk.getBusy() ? "Нет" : "Да"));
         });
@@ -76,7 +77,7 @@ public class Library {
                 libraryClientThread.start();
                 final int[] rndNumber = new int[1];
                 booksCatalog.forEach(bk -> {
-                    if (bk.getBusy()) {
+                    if (!bk.getBusy()) {
                         System.out.println("Название книги: " + bk.getTitle());
                         System.out.println();
                         System.out.println("Наличие книги: " + (bk.getBusy() ? "Нет" : "Да"));
@@ -109,7 +110,7 @@ public class Library {
             }
         }*/
         booksCatalog.forEach(bk -> {
-            if (bk.getBusy()) {
+            if (!bk.getBusy()) {
                 isFree[0]++;
             }
         });
@@ -120,5 +121,3 @@ public class Library {
         System.out.println();
     }
 }
-
-
