@@ -9,6 +9,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = false)
 public class LibraryClientThread extends Thread {
 
-/*    boolean getBooks(ArrayList booksCatalog) {
-    }*/
+    @Override
+    public void run() {
+    }
 }

@@ -7,12 +7,10 @@ import java.io.*;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-
-import static java.lang.Thread.sleep;
+import java.util.concurrent.atomic.AtomicLong;
 
 @Data
 @AllArgsConstructor
@@ -31,7 +29,7 @@ public class Library {
 
         System.out.println("TimerTask начал выполнение");
 
-        ExecutorService executor = Executors.newFixedThreadPool(10);
+//        ExecutorService executor = Executors.newFixedThreadPool(10);
 //        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(booksCatalog.size());
 
         GettingFile gettingFile = new GettingFile();
@@ -64,29 +62,36 @@ public class Library {
 
         while (System.currentTimeMillis() - START_TIME < workTime)
             for (int i = 0; i < (booksCatalog).size(); i++) {
-                scheduler.scheduleWithFixedDelay(new Runnable() {
+                final int num = 0;
+                num++;
+
+                Runnable task = () -> {
+                    System.out.println("Scheduling new thread");
+                };
+
+                printTask("T" + num);
+                scheduler.scheduleWithFixedDelay(task, initialDelay, period, TimeUnit.MILLISECONDS);
+/*                scheduler.scheduleWithFixedDelay(new Runnable() {
                     @Override
                     public void run() {
-                        int num = 0;
-                        num++;
-                        System.out.println("Scheduling Thread #" + num);
                     }
-                }, initialDelay, period, TimeUnit.MILLISECONDS);
-                LibraryClientThread libraryClientThread = new LibraryClientThread();
-                libraryClientThread.setName("Thread #" + i);
-                libraryClientThread.start();
-                final int[] rndNumber = new int[1];
+                }, initialDelay, period, TimeUnit.MILLISECONDS);*/
+
+                LibraryClientThread Thread = new LibraryClientThread();
+                Thread.setName("Thread #" + i);
+                Thread.start();
+                final Long rndNumber = 0L;
                 booksCatalog.forEach(bk -> {
                     if (!bk.getBusy()) {
                         System.out.println("Название книги: " + bk.getTitle());
                         System.out.println();
                         System.out.println("Наличие книги: " + (bk.getBusy() ? "Нет" : "Да"));
                         Random rnd = new Random();
-                        rndNumber[0] = minRange + rnd.nextInt(maxRange - minRange + 1);
-                        bk.waitAndSupply(1, rndNumber[0]);
+                        rndNumber = (long) minRange + rnd.nextInt(maxRange - minRange + 1);
+                        bk.waitAndSupply(1, rndNumber);
                         try {
                             bk.getBook(1);
-                            sleep(rndNumber[0]);
+                            Thread.sleep(rndNumber);
                             System.out.println("Возврат книги: " + bk.getTitle());
                             System.out.println();
                             bk.putBook(1);
@@ -101,6 +106,9 @@ public class Library {
 
                     }
                 });
+//                Thread.sleep(15000);
+                scheduler.shutdown();
+                scheduler.awaitTermination(rndNumber, TimeUnit.SECONDS);
         }
         scheduler.shutdownNow();
         final int[] isFree = {0};
@@ -120,4 +128,9 @@ public class Library {
         System.out.println("Количество книг в каталоге: " + isFree[0]);
         System.out.println();
     }
+
+    private static Runnable printTask(String prefix) {
+        return () -> System.out.println(prefix + ": " + (System.currentTimeMillis() - START_TIME));
+    }
+
 }
