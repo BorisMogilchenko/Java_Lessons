@@ -47,35 +47,4 @@ public class Book extends ArrayList {
         return quantity;
     }
 
-    synchronized void getBook(int amount) {
-        checkAmountNotNegative(amount);
-        quantity -= amount;
-        notifyAll();
-    }
-
-    synchronized void putBook(int amount) {
-        checkAmountNotNegative(amount);
-        if (amount < 0) {
-            throw new IllegalArgumentException("Negative amount of books");
-        }
-        quantity += amount;
-    }
-
-    void waitAndSupply(int amount, long rnd) {
-        checkAmountNotNegative(amount);
-        while (quantity < amount) {
-            try {
-                wait(rnd);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        quantity -= amount;
-    }
-
-    private void checkAmountNotNegative(int amount) {
-        if (amount < 0) {
-            throw new IllegalArgumentException("Negative amount of books");
-        }
-    }
 }

@@ -16,8 +16,6 @@ import java.util.concurrent.atomic.AtomicLong;
 @AllArgsConstructor
 public class Library {
     private static final int workTime = 30000;
-    private static final int minRange = 1000;
-    private static final int maxRange = 3000;
     private static long START_TIME;
 
     public static void main(String[] args) {
@@ -80,21 +78,18 @@ public class Library {
                 LibraryClientThread Thread = new LibraryClientThread();
                 Thread.setName("Thread #" + i);
                 Thread.start();
-                final Long rndNumber = 0L;
                 booksCatalog.forEach(bk -> {
                     if (!bk.getBusy()) {
                         System.out.println("Название книги: " + bk.getTitle());
                         System.out.println();
                         System.out.println("Наличие книги: " + (bk.getBusy() ? "Нет" : "Да"));
-                        Random rnd = new Random();
-                        rndNumber = (long) minRange + rnd.nextInt(maxRange - minRange + 1);
-                        bk.waitAndSupply(1, rndNumber);
+                        Thread.waitAndSupply(1);
                         try {
-                            bk.getBook(1);
+                            Thread.getBook(1);
                             Thread.sleep(rndNumber);
                             System.out.println("Возврат книги: " + bk.getTitle());
                             System.out.println();
-                            bk.putBook(1);
+                            Thread.putBook(1);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
