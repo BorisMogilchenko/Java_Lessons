@@ -5,10 +5,10 @@ import java.util.ArrayList;
 public class Book extends ArrayList {
     private String title;
     private Boolean isBusy;
-    private int quantity;
+//    private int quantity;
 //    private List<T> list = new ArrayList<>();
 
-    public Book() {}
+//    public Book() {}
 
     public Book(String title, Boolean isBusy) {
         this.title = title;
@@ -43,8 +43,8 @@ public class Book extends ArrayList {
         isBusy = busy;
     }
 
-    public int getQuantity() {
-        return quantity;
-    }
+//    public int getQuantity() {
+//        return quantity;
+//    }
 
 }

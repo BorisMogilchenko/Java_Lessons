@@ -6,11 +6,9 @@ import lombok.Data;
 import java.io.*;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicLong;
 
 @Data
 @AllArgsConstructor
@@ -40,7 +38,7 @@ public class Library {
 
         File inputFile = gettingFile.getFileWithConditions(inFileName);
 //        Book booksCatalog = FileToBufStream.loadFileToStream(inputFile);
-        ArrayList<Book> booksCatalog = new ArrayList<>();
+        ArrayList< Book > booksCatalog = new ArrayList<>();
         try (FileInputStream fis = new FileInputStream(inputFile);
              InputStreamReader isr = new InputStreamReader(fis, Charset.forName("UTF-8"));
              BufferedReader bufRead = new BufferedReader(isr)
@@ -58,74 +56,69 @@ public class Library {
             System.out.println("Наличие книги: " + (bk.getBusy() ? "Нет" : "Да"));
         });
 
-        while (System.currentTimeMillis() - START_TIME < workTime)
+        while (System.currentTimeMillis() - START_TIME < workTime) {
             for (int i = 0; i < (booksCatalog).size(); i++) {
-                final int num = 0;
-                num++;
 
                 Runnable task = () -> {
                     System.out.println("Scheduling new thread");
                 };
-
-                printTask("T" + num);
                 scheduler.scheduleWithFixedDelay(task, initialDelay, period, TimeUnit.MILLISECONDS);
+                LibraryClientThread Thread = new LibraryClientThread("Thread #" + i, booksCatalog);
+                Thread.start();
+
 /*                scheduler.scheduleWithFixedDelay(new Runnable() {
                     @Override
                     public void run() {
                     }
                 }, initialDelay, period, TimeUnit.MILLISECONDS);*/
 
-                LibraryClientThread Thread = new LibraryClientThread();
-                Thread.setName("Thread #" + i);
-                Thread.start();
-                booksCatalog.forEach(bk -> {
+/*                booksCatalog.forEach(bk -> {
                     if (!bk.getBusy()) {
                         System.out.println("Название книги: " + bk.getTitle());
                         System.out.println();
                         System.out.println("Наличие книги: " + (bk.getBusy() ? "Нет" : "Да"));
                         Thread.waitAndSupply(1);
-                        try {
+//                        try {
                             Thread.getBook(1);
-                            Thread.sleep(rndNumber);
                             System.out.println("Возврат книги: " + bk.getTitle());
                             System.out.println();
                             Thread.putBook(1);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
+//                        } catch (InterruptedException e) {
+//                            e.printStackTrace();
+//                        }
                         System.out.println("Выдача книги: " + bk.getTitle());
                         System.out.println();
                         bk.setBusy(true);
 
-                        System.exit(0);
+//                        System.exit(0);
 
                     }
-                });
-//                Thread.sleep(15000);
-                scheduler.shutdown();
-                scheduler.awaitTermination(rndNumber, TimeUnit.SECONDS);
-        }
-        scheduler.shutdownNow();
-        final int[] isFree = {0};
+                });*/
+                try {
+                    scheduler.shutdown();
+                    scheduler.awaitTermination(workTime, TimeUnit.SECONDS);
+                } catch (InterruptedException ex) {
+                    System.out.println("All threads are shutdown!!!");
+                }
+
+                scheduler.shutdownNow();
+                final int[] isFree = {0};
 /*        for (int i = 0; i < booksCatalog.size(); i++) {
             if (booksCatalog.getBusy()) {
                 isFree[0]++;
             }
         }*/
-        booksCatalog.forEach(bk -> {
-            if (!bk.getBusy()) {
-                isFree[0]++;
+                booksCatalog.forEach(bk -> {
+                    if (!bk.getBusy()) {
+                        isFree[0]++;
+                    }
+                });
+
+                System.out.println("Число запущенных потоков: " + ThreadStatus.getStatus());
+                System.out.println();
+                System.out.println("Количество книг в каталоге: " + isFree[0]);
+                System.out.println();
             }
-        });
-
-        System.out.println("Число запущенных потоков: " + ThreadStatus.getStatus());
-        System.out.println();
-        System.out.println("Количество книг в каталоге: " + isFree[0]);
-        System.out.println();
+        }
     }
-
-    private static Runnable printTask(String prefix) {
-        return () -> System.out.println(prefix + ": " + (System.currentTimeMillis() - START_TIME));
-    }
-
 }
