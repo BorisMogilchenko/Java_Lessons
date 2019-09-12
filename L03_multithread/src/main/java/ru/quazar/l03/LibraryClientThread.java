@@ -16,7 +16,7 @@ public class LibraryClientThread extends Thread {
     private String localName;
 
     public LibraryClientThread(String name,  ArrayList<Book> booksCatalog) {
-//        this.name = name;
+        super(name);
         localName = name;
         this.booksCatalog = booksCatalog;
     }
@@ -33,7 +33,7 @@ public class LibraryClientThread extends Thread {
                 System.out.println("Название книги: " + booksCatalog.get(i).getTitle());
                 System.out.println();
                 System.out.println("Наличие книги: " + (booksCatalog.get(i).getBusy() ? "Нет" : "Да"));
-                waitAndSupply(1, rndNumber);
+//                waitAndSupply(1, rndNumber);
                 try {
                     System.out.println("Выдача книги: " + booksCatalog.get(i).getTitle());
                     System.out.println();
@@ -44,12 +44,16 @@ public class LibraryClientThread extends Thread {
                     System.out.println();
                     putBook(1, i);
                     booksCatalog.get(i).setBusy(false);
+                    interrupt();
+                    break;
                 } catch (InterruptedException e) {
                     System.out.println("Thread " + localName + " has been interrupted");
 //                    e.printStackTrace();
                 }
             }
         }
+        interrupt();
+
         booksCatalog.forEach(bk -> {
 /*            if (!bk.getBusy()) {
                 System.out.println("Название книги: " + bk.getTitle());

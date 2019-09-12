@@ -17,7 +17,7 @@ public class Library {
     private static long START_TIME;
 
     public static void main(String[] args) {
-        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(10);
+        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(5);
         START_TIME = System.currentTimeMillis();
         String inFileName = "";
         int initialDelay = 0;
@@ -51,7 +51,6 @@ public class Library {
             ex.printStackTrace(System.out);
         }
         booksCatalog.forEach(bk -> {
-            System.out.println("Содержание книги: " + bk);
             System.out.println("Название книги: " + bk.getTitle());
             System.out.println("Наличие книги: " + (bk.getBusy() ? "Нет" : "Да"));
         });
@@ -59,12 +58,22 @@ public class Library {
         while (System.currentTimeMillis() - START_TIME < workTime) {
             for (int i = 0; i < (booksCatalog).size(); i++) {
 
-                Runnable task = () -> {
-                    System.out.println("Scheduling new thread");
+/*                Runnable task = () -> {
+                    System.out.println(Thread.currentThread().getName());
                 };
-                scheduler.scheduleWithFixedDelay(task, initialDelay, period, TimeUnit.MILLISECONDS);
-                LibraryClientThread Thread = new LibraryClientThread("Thread #" + i, booksCatalog);
-                Thread.start();
+                for (int j = 0; j < 5; j++) {
+                    Future result = scheduler.submit(task);
+                    System.out.println(result.get());
+                }*/
+
+/*                Runnable MyTimerTask {
+                    public void run() {
+                    }
+                }*/
+//                scheduler.scheduleAtFixedRate(new MyTimerTask(), initialDelay, period, TimeUnit.MILLISECONDS);
+                scheduler.scheduleAtFixedRate(() -> System.out.println("Scheduling: " + Thread.currentThread().getName()), initialDelay, period, TimeUnit.MILLISECONDS);
+                LibraryClientThread LibraryClientThread = new LibraryClientThread("Thread #" + i++, booksCatalog);
+                LibraryClientThread.start();
 
 /*                scheduler.scheduleWithFixedDelay(new Runnable() {
                     @Override
@@ -94,29 +103,30 @@ public class Library {
 
                     }
                 });*/
-                try {
+/*                try {
                     scheduler.shutdown();
                     scheduler.awaitTermination(workTime, TimeUnit.SECONDS);
                 } catch (InterruptedException ex) {
                     System.out.println("All threads are shutdown!!!");
-                }
+                }*/
 
-                scheduler.shutdownNow();
-                final int[] isFree = {0};
-/*        for (int i = 0; i < booksCatalog.size(); i++) {
-            if (booksCatalog.getBusy()) {
-                isFree[0]++;
+//                scheduler.shutdownNow();
+                int isFree = 0;
+        for (int k = 0; k < booksCatalog.size(); k++) {
+            if (booksCatalog.get(k).getBusy()) {
+                isFree++;
             }
-        }*/
+        }
+/*                final int[] isFree = {0};
                 booksCatalog.forEach(bk -> {
                     if (!bk.getBusy()) {
                         isFree[0]++;
                     }
-                });
+                });*/
 
                 System.out.println("Число запущенных потоков: " + ThreadStatus.getStatus());
                 System.out.println();
-                System.out.println("Количество книг в каталоге: " + isFree[0]);
+                System.out.println("Количество книг в каталоге: " + isFree);
                 System.out.println();
             }
         }
