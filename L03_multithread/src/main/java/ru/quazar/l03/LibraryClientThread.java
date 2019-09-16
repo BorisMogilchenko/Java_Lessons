@@ -13,11 +13,8 @@ public class LibraryClientThread extends Thread {
     private static final int minRange = 1000;
     private static final int maxRange = 3000;
     private ArrayList<Book> booksCatalog;
-    private String localName;
 
-    public LibraryClientThread(String name,  ArrayList<Book> booksCatalog) {
-        super(name);
-        localName = name;
+    public LibraryClientThread( ArrayList<Book> booksCatalog) {
         this.booksCatalog = booksCatalog;
     }
 
@@ -29,6 +26,7 @@ public class LibraryClientThread extends Thread {
         rndNumber = minRange + rnd.nextInt(maxRange - minRange + 1);
 
         for (int i = 0; i < booksCatalog.size(); i++) {
+            System.out.println(Thread.currentThread().getName());
             if (!booksCatalog.get(i).getBusy()) {
                 System.out.println("Название книги: " + booksCatalog.get(i).getTitle());
                 System.out.println();
@@ -47,7 +45,7 @@ public class LibraryClientThread extends Thread {
                     interrupt();
                     break;
                 } catch (InterruptedException e) {
-                    System.out.println("Thread " + localName + " has been interrupted");
+                    System.out.println("Thread has been interrupted");
 //                    e.printStackTrace();
                 }
             }

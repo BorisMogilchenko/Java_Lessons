@@ -8,7 +8,10 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.ScheduledFuture;
+
+import static java.util.concurrent.TimeUnit.MILLISECONDS;
+import static java.util.concurrent.TimeUnit.SECONDS;
 
 @Data
 @AllArgsConstructor
@@ -17,16 +20,13 @@ public class Library {
     private static long START_TIME;
 
     public static void main(String[] args) {
-        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(5);
+        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
         START_TIME = System.currentTimeMillis();
         String inFileName = "";
         int initialDelay = 0;
         int period = 250;
 
         System.out.println("TimerTask начал выполнение");
-
-//        ExecutorService executor = Executors.newFixedThreadPool(10);
-//        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(booksCatalog.size());
 
         GettingFile gettingFile = new GettingFile();
 
@@ -56,12 +56,52 @@ public class Library {
         });
 
         while (System.currentTimeMillis() - START_TIME < workTime) {
+            final Runnable task = () -> {
+                System.out.println("New thread had started");
+            };
+
+            final ScheduledFuture<?> taskHandler =
+                    scheduler.scheduleAtFixedRate(task, initialDelay, period, MILLISECONDS);
+            scheduler.schedule(new Runnable() {
+                public void run() { taskHandler.cancel(true); }
+            }, workTime, SECONDS);
+
             for (int i = 0; i < (booksCatalog).size(); i++) {
 
 /*                Runnable task = () -> {
-                    System.out.println(Thread.currentThread().getName());
-                };
-                for (int j = 0; j < 5; j++) {
+                    List< Future<String> > futurs = null;
+                    try {
+                        futurs = scheduler.invokeAll(
+                                Arrays.asList(new LibraryClientThread("Thread 1"),new LibraryClientThread("Thread 2"),
+                                        new LibraryClientThread("Thread 3"), new LibraryClientThread("Thread 4"),
+                                        new LibraryClientThread("Thread 5"))
+                        );
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                    for (Future<String> future : futurs) {
+                        try {
+                            System.out.println("Result from list LibraryClient " + future.get());
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        } catch (ExecutionException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    scheduler.shutdown();
+                    try {
+                        scheduler.awaitTermination(10L, TimeUnit.SECONDS);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+//                    System.out.println(Thread.currentThread().getName());
+//                    LibraryClientThread LibraryClientThread = new LibraryClientThread(booksCatalog);
+//                    LibraryClientThread.start();
+                };*/
+/*                for (int j = 0; j < 5; j++) {
                     Future result = scheduler.submit(task);
                     System.out.println(result.get());
                 }*/
@@ -71,9 +111,7 @@ public class Library {
                     }
                 }*/
 //                scheduler.scheduleAtFixedRate(new MyTimerTask(), initialDelay, period, TimeUnit.MILLISECONDS);
-                scheduler.scheduleAtFixedRate(() -> System.out.println("Scheduling: " + Thread.currentThread().getName()), initialDelay, period, TimeUnit.MILLISECONDS);
-                LibraryClientThread LibraryClientThread = new LibraryClientThread("Thread #" + i++, booksCatalog);
-                LibraryClientThread.start();
+//                scheduler.scheduleAtFixedRate(new LibraryClientThread(booksCatalog), initialDelay, period, TimeUnit.MILLISECONDS);
 
 /*                scheduler.scheduleWithFixedDelay(new Runnable() {
                     @Override
@@ -111,24 +149,46 @@ public class Library {
                 }*/
 
 //                scheduler.shutdownNow();
-                int isFree = 0;
-        for (int k = 0; k < booksCatalog.size(); k++) {
-            if (booksCatalog.get(k).getBusy()) {
-                isFree++;
-            }
-        }
 /*                final int[] isFree = {0};
                 booksCatalog.forEach(bk -> {
                     if (!bk.getBusy()) {
                         isFree[0]++;
                     }
                 });*/
-
-                System.out.println("Число запущенных потоков: " + ThreadStatus.getStatus());
-                System.out.println();
-                System.out.println("Количество книг в каталоге: " + isFree);
-                System.out.println();
             }
+            int isFree = 0;
+            for (int k = 0; k < booksCatalog.size(); k++) {
+                if (booksCatalog.get(k).getBusy()) {
+                    isFree++;
+                }
+            }
+
+            System.out.println("Число запущенных потоков: " + ThreadStatus.getStatus());
+            System.out.println();
+            System.out.println("Количество книг в каталоге: " + isFree);
+            System.out.println();
         }
     }
+
+/*    private static class LibraryClientThread implements Callable<String> {
+        private final int minRange = 1000;
+        private final int maxRange = 3000;
+        private final String name;
+        long rndNumber;
+
+        public LibraryClientThread(String name) {
+            this.name = name;
+        }
+
+        public String call() throws InterruptedException {
+            Random rnd = new Random();
+            rndNumber = (long) (minRange + rnd.nextInt(maxRange - minRange + 1));
+            System.out.println(name + " started, going to sleep for " + rndNumber);
+            Thread.sleep(rndNumber);
+            System.out.println(name + " finished");
+            return name;
+        }
+
+
+    }*/
 }
