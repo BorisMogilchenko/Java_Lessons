@@ -6,9 +6,10 @@ import lombok.Data;
 import java.io.*;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ScheduledFuture;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
+import java.util.concurrent.*;
 
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 import static java.util.concurrent.TimeUnit.SECONDS;
@@ -20,11 +21,11 @@ public class Library {
     private static long START_TIME;
 
     public static void main(String[] args) {
-        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+        ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
         START_TIME = System.currentTimeMillis();
         String inFileName = "";
-        int initialDelay = 0;
-        int period = 250;
+        int initialDelay = 2000;
+        int period = 2500;
 
         System.out.println("TimerTask начал выполнение");
 
@@ -57,7 +58,35 @@ public class Library {
 
         while (System.currentTimeMillis() - START_TIME < workTime) {
             final Runnable task = () -> {
-                System.out.println("New thread had started");
+//                System.out.println("New thread had started");
+//                new LibraryClientThread(booksCatalog).start();
+                List< Future<String> > futurs;
+                try {
+                    futurs = scheduler.invokeAll(
+                            Arrays.asList(new LibraryClient("Thread 1", booksCatalog),new LibraryClient("Thread 2", booksCatalog),
+                                    new LibraryClient("Thread 3", booksCatalog), new LibraryClient("Thread 4", booksCatalog),
+                                    new LibraryClient("Thread 5", booksCatalog))
+                    );
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                for (Future<String> future : futurs) {
+                    try {
+                        System.out.println("Result from list LibraryClient " + future.get());
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                scheduler.shutdown();
+                try {
+                    scheduler.awaitTermination(10L, TimeUnit.SECONDS);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             };
 
             final ScheduledFuture<?> taskHandler =
@@ -65,6 +94,13 @@ public class Library {
             scheduler.schedule(new Runnable() {
                 public void run() { taskHandler.cancel(true); }
             }, workTime, SECONDS);
+
+            scheduler.shutdown();
+            try {
+                scheduler.awaitTermination(10L, TimeUnit.SECONDS);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
             for (int i = 0; i < (booksCatalog).size(); i++) {
 
@@ -170,25 +206,53 @@ public class Library {
         }
     }
 
-/*    private static class LibraryClientThread implements Callable<String> {
+    private static class LibraryClient implements Callable<String> {
         private final int minRange = 1000;
         private final int maxRange = 3000;
         private final String name;
         long rndNumber;
+        private ArrayList<Book> booksCatalog;
 
-        public LibraryClientThread(String name) {
+        public LibraryClient(String name, ArrayList<Book> booksCatalog) {
             this.name = name;
+            this.booksCatalog = booksCatalog;
         }
 
         public String call() throws InterruptedException {
             Random rnd = new Random();
             rndNumber = (long) (minRange + rnd.nextInt(maxRange - minRange + 1));
             System.out.println(name + " started, going to sleep for " + rndNumber);
+/*
+ *         for (int i = 0; i < booksCatalog.size(); i++) {
+ *             System.out.println(Thread.currentThread().getName());
+ *             if (!booksCatalog.get(i).getBusy()) {
+ *                 System.out.println("Название книги: " + booksCatalog.get(i).getTitle());
+ *                 System.out.println();
+ *                 System.out.println("Наличие книги: " + (booksCatalog.get(i).getBusy() ? "Нет" : "Да"));
+ *                 waitAndSupply(1, rndNumber);
+ *                 try {
+ *                     System.out.println("Выдача книги: " + booksCatalog.get(i).getTitle());
+ *                     System.out.println();
+ *                     getBook(1, i);
+ *                     booksCatalog.get(i).setBusy(true);
+ *                     sleep(rndNumber);
+ *                     System.out.println("Возврат книги: " + booksCatalog.get(i).getTitle());
+ *                     System.out.println();
+ *                     putBook(1, i);
+ *                     booksCatalog.get(i).setBusy(false);
+ *                     interrupt();
+ *                     break;
+ *                 } catch (InterruptedException e) {
+ *                     System.out.println("Thread has been interrupted");
+ * //                    e.printStackTrace();
+ *                 }
+ *             } else interrupt();
+ *             break;
+ *         }
+*/
             Thread.sleep(rndNumber);
             System.out.println(name + " finished");
             return name;
         }
-
-
-    }*/
+    }
 }

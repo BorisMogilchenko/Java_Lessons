@@ -48,9 +48,9 @@ public class LibraryClientThread extends Thread {
                     System.out.println("Thread has been interrupted");
 //                    e.printStackTrace();
                 }
-            }
+            } else interrupt();
+            break;
         }
-        interrupt();
 
         booksCatalog.forEach(bk -> {
 /*            if (!bk.getBusy()) {
