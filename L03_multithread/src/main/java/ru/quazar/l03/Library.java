@@ -6,13 +6,10 @@ import lombok.Data;
 import java.io.*;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
 import java.util.concurrent.*;
 
-import static java.util.concurrent.TimeUnit.MILLISECONDS;
-import static java.util.concurrent.TimeUnit.SECONDS;
+import static java.lang.Thread.sleep;
 
 @Data
 @AllArgsConstructor
@@ -57,10 +54,10 @@ public class Library {
         });
 
         while (System.currentTimeMillis() - START_TIME < workTime) {
-            final Runnable task = () -> {
+/*            final Runnable task = () -> {
 //                System.out.println("New thread had started");
 //                new LibraryClientThread(booksCatalog).start();
-                List< Future<String> > futurs;
+                List< Future<String> > futurs = null;
                 try {
                     futurs = scheduler.invokeAll(
                             Arrays.asList(new LibraryClient("Thread 1", booksCatalog),new LibraryClient("Thread 2", booksCatalog),
@@ -100,7 +97,10 @@ public class Library {
                 scheduler.awaitTermination(10L, TimeUnit.SECONDS);
             } catch (InterruptedException e) {
                 e.printStackTrace();
-            }
+            }*/
+
+            Splash testSplash = new Splash();
+            testSplash.start();
 
             for (int i = 0; i < (booksCatalog).size(); i++) {
 
@@ -199,6 +199,8 @@ public class Library {
                 }
             }
 
+            testSplash.stop();
+
             System.out.println("Число запущенных потоков: " + ThreadStatus.getStatus());
             System.out.println();
             System.out.println("Количество книг в каталоге: " + isFree);
@@ -206,7 +208,7 @@ public class Library {
         }
     }
 
-    private static class LibraryClient implements Callable<String> {
+    public static class LibraryClient implements Callable<String> {
         private final int minRange = 1000;
         private final int maxRange = 3000;
         private final String name;
@@ -222,37 +224,73 @@ public class Library {
             Random rnd = new Random();
             rndNumber = (long) (minRange + rnd.nextInt(maxRange - minRange + 1));
             System.out.println(name + " started, going to sleep for " + rndNumber);
-/*
- *         for (int i = 0; i < booksCatalog.size(); i++) {
- *             System.out.println(Thread.currentThread().getName());
- *             if (!booksCatalog.get(i).getBusy()) {
- *                 System.out.println("Название книги: " + booksCatalog.get(i).getTitle());
- *                 System.out.println();
- *                 System.out.println("Наличие книги: " + (booksCatalog.get(i).getBusy() ? "Нет" : "Да"));
- *                 waitAndSupply(1, rndNumber);
- *                 try {
- *                     System.out.println("Выдача книги: " + booksCatalog.get(i).getTitle());
- *                     System.out.println();
- *                     getBook(1, i);
- *                     booksCatalog.get(i).setBusy(true);
- *                     sleep(rndNumber);
- *                     System.out.println("Возврат книги: " + booksCatalog.get(i).getTitle());
- *                     System.out.println();
- *                     putBook(1, i);
- *                     booksCatalog.get(i).setBusy(false);
- *                     interrupt();
- *                     break;
- *                 } catch (InterruptedException e) {
- *                     System.out.println("Thread has been interrupted");
- * //                    e.printStackTrace();
- *                 }
- *             } else interrupt();
- *             break;
- *         }
-*/
+
+            for (int i = 0; i < booksCatalog.size(); i++) {
+                System.out.println(Thread.currentThread().getName());
+                if (!booksCatalog.get(i).getBusy()) {
+                    System.out.println("Название книги: " + booksCatalog.get(i).getTitle());
+                    System.out.println();
+                    System.out.println("Наличие книги: " + (booksCatalog.get(i).getBusy() ? "Нет" : "Да"));
+//                    booksCatalog.get(i).waitAndSupply(1, rndNumber);
+                    try {
+                        System.out.println("Выдача книги: " + booksCatalog.get(i).getTitle());
+                        System.out.println();
+//                        booksCatalog.get(i).getBook(1, i);
+                        booksCatalog.get(i).setBusy(true);
+                        sleep(rndNumber);
+                        System.out.println("Возврат книги: " + booksCatalog.get(i).getTitle());
+                        System.out.println();
+//                        booksCatalog.putBook(1, i);
+                        booksCatalog.get(i).setBusy(false);
+//                        Thread.interrupt();
+                        break;
+                    } catch (InterruptedException e) {
+                        System.out.println("Thread has been interrupted");
+    //                   e.printStackTrace();
+                    }
+                } else break;
+            }
+
             Thread.sleep(rndNumber);
             System.out.println(name + " finished");
             return name;
         }
     }
+
+    public static class Splash {
+
+        private final ScheduledExecutorService scheduler;
+        private ScheduledFuture<?> point6;
+        private ScheduledFuture<?> point60;
+
+        public Splash() {
+            scheduler = Executors.newSingleThreadScheduledExecutor();
+        }
+
+        public void start() {
+            point60 = scheduler.scheduleAtFixedRate(new Out(System.out, '|'), 60, 60, TimeUnit.SECONDS);
+            point6 = scheduler.scheduleAtFixedRate(new Out(System.out, '*'), 0, 6, TimeUnit.SECONDS);
+        }
+
+        public void stop() {
+            point6.cancel(true);
+            point60.cancel(true);
+            scheduler.shutdownNow();
+        }
+
+        public static class Out implements Runnable {
+            private char ch;
+            private PrintStream out;
+
+            public Out(PrintStream out, char ch) {
+                this.out = out;
+                this.ch = ch;
+            }
+
+            public void run() {
+                out.print(ch);
+            }
+        }
+    }
+
 }
