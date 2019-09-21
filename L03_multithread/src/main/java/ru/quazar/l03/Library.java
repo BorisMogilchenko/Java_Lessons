@@ -9,8 +9,6 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.*;
 
-import static java.lang.Thread.sleep;
-
 @Data
 @AllArgsConstructor
 public class Library {
@@ -18,7 +16,6 @@ public class Library {
     private static long START_TIME;
 
     public static void main(String[] args) {
-        ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
         START_TIME = System.currentTimeMillis();
         String inFileName = "";
         int initialDelay = 2000;
@@ -35,8 +32,8 @@ public class Library {
         }
 
         File inputFile = gettingFile.getFileWithConditions(inFileName);
-//        Book booksCatalog = FileToBufStream.loadFileToStream(inputFile);
         ArrayList< Book > booksCatalog = new ArrayList<>();
+
         try (FileInputStream fis = new FileInputStream(inputFile);
              InputStreamReader isr = new InputStreamReader(fis, Charset.forName("UTF-8"));
              BufferedReader bufRead = new BufferedReader(isr)
@@ -52,6 +49,14 @@ public class Library {
             System.out.println("Название книги: " + bk.getTitle());
             System.out.println("Наличие книги: " + (bk.getBusy() ? "Нет" : "Да"));
         });
+
+        int isFreeBook = 0;
+        for (int z = 0; z < booksCatalog.size(); z++) {
+            if (!booksCatalog.get(z).getBusy()) {
+                isFreeBook++;
+            }
+        }
+        System.out.println("Количество книг в каталоге: " + isFreeBook);
 
         while (System.currentTimeMillis() - START_TIME < workTime) {
 /*            final Runnable task = () -> {
@@ -99,8 +104,8 @@ public class Library {
                 e.printStackTrace();
             }*/
 
-            Splash testSplash = new Splash();
-            testSplash.start();
+            LibraryClient library = new LibraryClient();
+            library.start(booksCatalog);
 
             for (int i = 0; i < (booksCatalog).size(); i++) {
 
@@ -142,41 +147,9 @@ public class Library {
                     System.out.println(result.get());
                 }*/
 
-/*                Runnable MyTimerTask {
-                    public void run() {
-                    }
-                }*/
 //                scheduler.scheduleAtFixedRate(new MyTimerTask(), initialDelay, period, TimeUnit.MILLISECONDS);
 //                scheduler.scheduleAtFixedRate(new LibraryClientThread(booksCatalog), initialDelay, period, TimeUnit.MILLISECONDS);
 
-/*                scheduler.scheduleWithFixedDelay(new Runnable() {
-                    @Override
-                    public void run() {
-                    }
-                }, initialDelay, period, TimeUnit.MILLISECONDS);*/
-
-/*                booksCatalog.forEach(bk -> {
-                    if (!bk.getBusy()) {
-                        System.out.println("Название книги: " + bk.getTitle());
-                        System.out.println();
-                        System.out.println("Наличие книги: " + (bk.getBusy() ? "Нет" : "Да"));
-                        Thread.waitAndSupply(1);
-//                        try {
-                            Thread.getBook(1);
-                            System.out.println("Возврат книги: " + bk.getTitle());
-                            System.out.println();
-                            Thread.putBook(1);
-//                        } catch (InterruptedException e) {
-//                            e.printStackTrace();
-//                        }
-                        System.out.println("Выдача книги: " + bk.getTitle());
-                        System.out.println();
-                        bk.setBusy(true);
-
-//                        System.exit(0);
-
-                    }
-                });*/
 /*                try {
                     scheduler.shutdown();
                     scheduler.awaitTermination(workTime, TimeUnit.SECONDS);
@@ -192,42 +165,57 @@ public class Library {
                     }
                 });*/
             }
-            int isFree = 0;
+
+/*            int isFree = 0;
             for (int k = 0; k < booksCatalog.size(); k++) {
-                if (booksCatalog.get(k).getBusy()) {
+                if (!booksCatalog.get(k).getBusy()) {
                     isFree++;
                 }
-            }
+           }*/
 
-            testSplash.stop();
+            library.stop();
 
-            System.out.println("Число запущенных потоков: " + ThreadStatus.getStatus());
+/*            System.out.println("Число запущенных потоков: " + ThreadStatus.getStatus());
             System.out.println();
             System.out.println("Количество книг в каталоге: " + isFree);
-            System.out.println();
+            System.out.println();*/
         }
     }
 
-    public static class LibraryClient implements Callable<String> {
+    public static class LibraryClient implements Callable<String>, Runnable {
         private final int minRange = 1000;
         private final int maxRange = 3000;
-        private final String name;
+        private String name;
+//        private ScheduledExecutorService scheduler;
         long rndNumber;
-        private ArrayList<Book> booksCatalog;
+//        private ArrayList<Book> booksCatalog;
+        private ScheduledFuture<?> findBook;
 
-        public LibraryClient(String name, ArrayList<Book> booksCatalog) {
-            this.name = name;
-            this.booksCatalog = booksCatalog;
+        ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
+
+        @Override
+        public void run() {
+            System.out.println("New thread!!!");
+        }
+
+        public void start(ArrayList<Book> booksCatalog) {
+//            this.booksCatalog = booksCatalog;
+            findBook = scheduler.scheduleAtFixedRate(new LibraryClientThread(booksCatalog), 0, 250, TimeUnit.MILLISECONDS);
+        }
+
+        public void stop() {
+            findBook.cancel(true);
+            scheduler.shutdownNow();
         }
 
         public String call() throws InterruptedException {
             Random rnd = new Random();
             rndNumber = (long) (minRange + rnd.nextInt(maxRange - minRange + 1));
-            System.out.println(name + " started, going to sleep for " + rndNumber);
 
-            for (int i = 0; i < booksCatalog.size(); i++) {
-                System.out.println(Thread.currentThread().getName());
-                if (!booksCatalog.get(i).getBusy()) {
+            for (int i = 1; i < 10; i++) {
+                this.name = "Thread#" + i;
+                System.out.println(name + " started, going to sleep for " + rndNumber);
+/*                if (!booksCatalog.get(i).getBusy()) {
                     System.out.println("Название книги: " + booksCatalog.get(i).getTitle());
                     System.out.println();
                     System.out.println("Наличие книги: " + (booksCatalog.get(i).getBusy() ? "Нет" : "Да"));
@@ -248,13 +236,14 @@ public class Library {
                         System.out.println("Thread has been interrupted");
     //                   e.printStackTrace();
                     }
-                } else break;
+                } else break;*/
             }
 
             Thread.sleep(rndNumber);
             System.out.println(name + " finished");
             return name;
         }
+
     }
 
     public static class Splash {
@@ -292,5 +281,4 @@ public class Library {
             }
         }
     }
-
 }

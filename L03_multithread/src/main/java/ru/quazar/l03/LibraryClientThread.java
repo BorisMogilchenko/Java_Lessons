@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 @Data
 //@AllArgsConstructor
@@ -19,7 +20,7 @@ public class LibraryClientThread extends Thread {
 
     @Override
     public void run() {
-/*        int rndNumber;
+        int rndNumber;
 
         Random rnd = new Random();
         rndNumber = minRange + rnd.nextInt(maxRange - minRange + 1);
@@ -49,7 +50,7 @@ public class LibraryClientThread extends Thread {
                 }
             } else interrupt();
             break;
-        }*/
+        }
 
         booksCatalog.forEach(bk -> {
 /*            if (!bk.getBusy()) {
