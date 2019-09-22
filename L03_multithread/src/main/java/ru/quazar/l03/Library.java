@@ -191,7 +191,7 @@ public class Library {
 //        private ArrayList<Book> booksCatalog;
         private ScheduledFuture<?> findBook;
 
-        ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
+        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(10);
 
         @Override
         public void run() {
@@ -215,28 +215,6 @@ public class Library {
             for (int i = 1; i < 10; i++) {
                 this.name = "Thread#" + i;
                 System.out.println(name + " started, going to sleep for " + rndNumber);
-/*                if (!booksCatalog.get(i).getBusy()) {
-                    System.out.println("Название книги: " + booksCatalog.get(i).getTitle());
-                    System.out.println();
-                    System.out.println("Наличие книги: " + (booksCatalog.get(i).getBusy() ? "Нет" : "Да"));
-//                    booksCatalog.get(i).waitAndSupply(1, rndNumber);
-                    try {
-                        System.out.println("Выдача книги: " + booksCatalog.get(i).getTitle());
-                        System.out.println();
-//                        booksCatalog.get(i).getBook(1, i);
-                        booksCatalog.get(i).setBusy(true);
-                        sleep(rndNumber);
-                        System.out.println("Возврат книги: " + booksCatalog.get(i).getTitle());
-                        System.out.println();
-//                        booksCatalog.putBook(1, i);
-                        booksCatalog.get(i).setBusy(false);
-//                        Thread.interrupt();
-                        break;
-                    } catch (InterruptedException e) {
-                        System.out.println("Thread has been interrupted");
-    //                   e.printStackTrace();
-                    }
-                } else break;*/
             }
 
             Thread.sleep(rndNumber);
