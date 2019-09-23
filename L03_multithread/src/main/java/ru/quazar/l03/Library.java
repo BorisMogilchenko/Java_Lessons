@@ -50,13 +50,13 @@ public class Library {
             System.out.println("Наличие книги: " + (bk.getBusy() ? "Нет" : "Да"));
         });
 
-        int isFreeBook = 0;
+/*        int isFreeBook = 0;
         for (int z = 0; z < booksCatalog.size(); z++) {
             if (!booksCatalog.get(z).getBusy()) {
                 isFreeBook++;
             }
         }
-        System.out.println("Количество книг в каталоге: " + isFreeBook);
+        System.out.println("Количество книг в каталоге: " + isFreeBook);*/
 
         while (System.currentTimeMillis() - START_TIME < workTime) {
 /*            final Runnable task = () -> {
@@ -166,23 +166,23 @@ public class Library {
                 });*/
             }
 
-/*            int isFree = 0;
-            for (int k = 0; k < booksCatalog.size(); k++) {
-                if (!booksCatalog.get(k).getBusy()) {
-                    isFree++;
-                }
-           }*/
-
             library.stop();
 
-/*            System.out.println("Число запущенных потоков: " + ThreadStatus.getStatus());
-            System.out.println();
-            System.out.println("Количество книг в каталоге: " + isFree);
-            System.out.println();*/
         }
+        int isFree = 0;
+        for (int k = 0; k < booksCatalog.size(); k++) {
+            if (!booksCatalog.get(k).getBusy()) {
+                isFree++;
+            }
+        }
+
+        System.out.println("Число запущенных потоков: " + ThreadStatus.getStatus());
+        System.out.println();
+        System.out.println("Количество книг в каталоге: " + isFree);
+        System.out.println();
     }
 
-    public static class LibraryClient implements Callable<String>, Runnable {
+    public static class LibraryClient implements Callable<String> {
         private final int minRange = 1000;
         private final int maxRange = 3000;
         private String name;
@@ -193,14 +193,14 @@ public class Library {
 
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(10);
 
-        @Override
-        public void run() {
-            System.out.println("New thread!!!");
-        }
-
         public void start(ArrayList<Book> booksCatalog) {
 //            this.booksCatalog = booksCatalog;
-            findBook = scheduler.scheduleAtFixedRate(new LibraryClientThread(booksCatalog), 0, 250, TimeUnit.MILLISECONDS);
+
+            Runnable task = () -> {
+                System.out.println("New thread had started");
+                new LibraryClientThread(booksCatalog).start();
+            };
+            findBook = scheduler.scheduleAtFixedRate(task, 0, 250, TimeUnit.MILLISECONDS);
         }
 
         public void stop() {
@@ -221,7 +221,6 @@ public class Library {
             System.out.println(name + " finished");
             return name;
         }
-
     }
 
     public static class Splash {

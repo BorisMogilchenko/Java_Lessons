@@ -21,12 +21,14 @@ public class LibraryClientThread extends Thread {
     @Override
     public void run() {
         int rndNumber;
+        String name;
 
         Random rnd = new Random();
         rndNumber = minRange + rnd.nextInt(maxRange - minRange + 1);
+        name = Thread.currentThread().getName();
+        System.out.println(name + " started");
 
         for (int i = 0; i < booksCatalog.size(); i++) {
-            System.out.println(Thread.currentThread().getName());
             if (!booksCatalog.get(i).getBusy()) {
                 System.out.println("Название книги: " + booksCatalog.get(i).getTitle());
                 System.out.println();
@@ -37,18 +39,19 @@ public class LibraryClientThread extends Thread {
                     System.out.println();
                     getBook(1, i);
                     booksCatalog.get(i).setBusy(true);
-                    sleep(rndNumber);
+                    System.out.println("Остановка потока на " + rndNumber);
+                    Thread.currentThread().sleep(rndNumber);
                     System.out.println("Возврат книги: " + booksCatalog.get(i).getTitle());
                     System.out.println();
                     putBook(1, i);
                     booksCatalog.get(i).setBusy(false);
-                    interrupt();
+                    Thread.currentThread().interrupt();
                     break;
                 } catch (InterruptedException e) {
-                    System.out.println("Thread has been interrupted");
+                    System.out.println(name + " has been interrupted");
 //                    e.printStackTrace();
                 }
-            } else interrupt();
+            } else Thread.currentThread().interrupt();
             break;
         }
 
