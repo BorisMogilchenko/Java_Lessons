@@ -20,6 +20,7 @@
         <module>L01_collections</module>
         <module>L02_io</module>
         <module>L03_multithread</module>
+        <module>L04_SpringBoot_Collections</module>
     </modules>
 
     <properties>
