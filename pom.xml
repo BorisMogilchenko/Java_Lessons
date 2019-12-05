@@ -21,6 +21,7 @@
         <module>L02_io</module>
         <module>L03_multithread</module>
         <module>L04_SpringBoot_Collections</module>
+        <module>L05_SpringBoot_Io</module>
     </modules>
 
     <properties>

@@ -26,9 +26,13 @@ public class FileToStreamService {
      * @throws IOException
      * @exception RuntimeException
      */
-    static String loadFileToStream(File inputFile) {
+    public static String loadFileToStream(File inputFile) {
 
         String myStringToFile = "";
+
+        if (!inputFile.canRead())
+            inputFile.setReadable(true);
+
         try (FileInputStream inFile = new FileInputStream(inputFile)
 
         ) {
@@ -50,7 +54,7 @@ public class FileToStreamService {
      * @throws IOException
      * @exception RuntimeException
      */
-    private static String fileFromStreamToString(FileInputStream inFile) throws IOException {
+    public static String fileFromStreamToString(FileInputStream inFile) throws IOException {
         String cTargetString = "";
         int c;
         String sInputFile;

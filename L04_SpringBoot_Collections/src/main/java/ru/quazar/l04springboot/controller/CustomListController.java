@@ -1,6 +1,5 @@
 package ru.quazar.l04springboot.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.quazar.l04springboot.model.CustomList;
 import ru.quazar.l04springboot.service.CustomListService;
@@ -19,8 +18,20 @@ import java.util.List;
 @RestController
 public class CustomListController {
 
-    @Autowired
-    private CustomListService CustomListService;
+/*    @Autowired
+    private CustomListService customListService;
+    private CheckArgsService checkArgsService;
+    private MaximumClassService maximumClassService;
+    private MinimumClassService minimumClassService;*/
+
+/*    @RequestMapping(value="/data", method = RequestMethod.GET)
+    public @ResponseBody
+    item getitem(@RequestParam("itemid") Optional<Integer> itemid) {
+        if( itemid.isPresent()){
+            item i = itemDao.findOne(itemid.get());
+            return i;
+        } else ....
+    }*/
 
     @GetMapping("/lists")
     List<CustomList> getList() {

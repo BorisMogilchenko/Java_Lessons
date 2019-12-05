@@ -4,7 +4,13 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import ru.quazar.l04springboot.model.CustomList;
 import ru.quazar.l04springboot.repository.CustomListRepository;
+import ru.quazar.l04springboot.service.CheckArgsService;
+import ru.quazar.l04springboot.service.MaximumClassService;
+import ru.quazar.l04springboot.service.MinimumClassService;
+
+import java.util.Random;
 
 /**
  * Make generic class with parameter T. source file by path, find substring "Hello, guys!".

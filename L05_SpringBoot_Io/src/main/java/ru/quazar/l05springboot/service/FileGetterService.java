@@ -23,7 +23,7 @@ public class FileGetterService {
      * @throws IOException
      * @exception RuntimeException
      */
-    File getFileWithConditions(String target, String filePath, String fileName) throws IOException {
+    public File getFileWithConditions(String target, String filePath, String fileName) throws IOException {
         switch (target) {
             case "1":
                 return getFileByPath(filePath, fileName);

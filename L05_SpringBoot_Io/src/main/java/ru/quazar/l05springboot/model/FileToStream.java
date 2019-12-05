@@ -6,8 +6,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Model IoStream witch links controller with services, repositories.
@@ -19,9 +17,11 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @Entity
-public class FileToStream<T extends Number> {
+public class FileToStream {
 
     @Id
     @GeneratedValue
-    private List<T> list = new ArrayList<>();
+    private String readingTarget;
+    private String targetPath;
+    private String fileName;
 }

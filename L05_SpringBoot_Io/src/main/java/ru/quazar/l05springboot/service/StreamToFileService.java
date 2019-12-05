@@ -23,7 +23,7 @@ public class StreamToFileService {
      * @throws IOException
      * @exception RuntimeException
      */
-    static void uploadStreamToFile (String outString, File target) {
+    public static void uploadStreamToFile (String outString, File target) {
 
         try(FileOutputStream outFile = new FileOutputStream(target)
 
@@ -33,5 +33,6 @@ public class StreamToFileService {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 }
