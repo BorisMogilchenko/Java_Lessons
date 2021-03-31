@@ -25,7 +25,7 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven-shade-plugin.version>3.2.1</maven-shade-plugin.version>
-        <com.google.guava.version>27.1-jre</com.google.guava.version>
+        <com.google.guava.version>29.0-jre</com.google.guava.version>
         <plugin.jar.version>3.1.2</plugin.jar.version>
         <plugin.dependency.version>3.1.1</plugin.dependency.version>
         <plugin.compiler.version>3.1</plugin.compiler.version>
